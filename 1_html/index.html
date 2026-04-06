@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Informacion no visible en la cabeza de la pagina -->
+<head>
+    <!-- Set de caracteres es UTF-8 -->
+    <meta charset="UTF-8">
+
+    <!-- Ajusta el contenido al ancho de la pantalla -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Div 131</title>
+
+    <!-- CSS Interno o internal CSS -->
+    <style>
+        /* Selector de etiqueta (recomendado para contenedores semanticos) */
+        header {
+            background-color: darkslateblue;
+            color: white;
+            /* Fuentes web-safe: https://www.w3schools.com/cssref/css_websafe_fonts.php */
+            font-family: Arial, Helvetica, sans-serif;
+        }
+    </style>
+
+    <!-- CSS Externo o external CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<!-- Ctrl + / para crear comentarios automaticos -->
+<body>
+    <!-- Encabezado, parte superior de la pagina -->
+    <header>
+        <!-- Primer contenedor de nuestra cabezera, que contiene logo y titulo -->
+        <div>
+            <div>
+                <img class="logo" src="img/logo-camino.jpg" alt="concha de santiago">
+            </div>
+            <h1>Fans de Santiago</h1>
+            <!-- CSS en linea o inline, NO recomendado 
+                <h1 style="color: blue;">Fans de Santiago</h1>
+            -->
+        </div>
+
+        <!-- Contenedor de navegacion -->
+        <nav>
+            <ul>
+                <li>Home</li>
+                <li>Acerca de</li>
+                <li>Contacto</li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- Contenido principal de la pagina -->
+    <main>
+        <!-- Seccion 1 de la pagina -->
+        <section>
+            <div class="ciudad" id="estero">
+                <h3>Santiago del Estero</h3>
+                <p>Ciudad de Atahualpa Yupanqui</p>
+                <p>
+                    <span class="destacado">Santiago del Estero es una ciudad argentina, capital de la provincia de Santiago del Estero y cabecera del departamento Juan Francisco Borges</span>
+                    Es la más antigua de las ciudades existentes del país. Se encuentra ubicada a orillas del río Dulce, y se extiende en una superficie de aproximadamente 4002 hectáreas, oficialmente dividida en 62 barrios.
+                </p>
+                <div>
+                    <img class="foto-ciudad" src="https://imgs.search.brave.com/WUWhH3XisxYrcePLxwC4ASBxq2NaTn5Tfguh0mCuYY4/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90NC5m/dGNkbi5uZXQvanBn/LzA2LzQ3LzMyLzc1/LzM2MF9GXzY0NzMy/NzU2MV9OTnJSWk5t/RGV1Sk9pbHI2YzZW/RXQyYmFmM0RtV2k4/cS5qcGc" alt="Santiago del Estero">
+                </div>
+            </div>
+
+            <div class="ciudad" id="guayaquil">
+                <h3>Santiago de Guayaquil</h3>
+                <p>Una de las ciudades mas grandes de Ecuador</p>
+                <p>
+                    <span class="destacado">Guayaquil, oficialmente Santiago de Guayaquil,[4]​es una ciudad ecuatoriana, capital de la provincia del Guayas y cabecera del cantón homónimo.</span>
+                    Se encuentra ubicada al centro-sur de la Costa, a orillas del río Guayas, a 20 kilómetros de su desembocadura en el océano Pacífico.
+                </p>
+                <div>
+                    <img class="foto-ciudad" src="https://imgs.search.brave.com/x6WKYELxPEsJSkhe7tTuwcHHWSu2ODhpAlsFyUxpdAU/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/b3Jhbmdlc21pbGUu/Y29tL2NvbW1vbi9p/bWdfY2l0aWVzX3c2/ODAvZ3VheWFxdWls/LS05Mjc1MDUtNC5q/cGc" alt="Santiago de Guayaquil">
+                </div>
+            </div>
+
+            <div class="ciudad" id="compostela">
+                <h3>Santiago de Compostela</h3>
+                <p>Capital de Galicia</p>
+                <p>
+                    <span class="destacado">Santiago de Compostela es una ciudad y municipio del estado español, capital de Galicia y sede de sus instituciones de gobierno, la Xunta de Galicia y el Parlamento.</span>
+                    Pertenece a la provincia de La Coruña, cuenta con una población de 100 965 habitantes (INE 2025), siendo el cuarto municipio más poblado de Galicia.
+                </p>
+                <div>
+                    <img class="foto-ciudad" src="https://imgs.search.brave.com/dgxdRza6gQB9T60AyZEHI_XIgG3l9pcK1vvaad08dI8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly90aHVt/YnMuZHJlYW1zdGlt/ZS5jb20vYi92aXNp/JUMzJUIzbi1zb2Jy/ZS1zYW50aWFnby1k/ZS1jb21wb3N0ZWxh/LXktc3UtY2F0ZWRy/YWwtNzc2Nzc2Ny5q/cGc" alt="Santiago de Compostela">
+                </div>
+            </div>
+
+            <div class="ciudad" id="cuba">
+                <h3>Santiago de Cuba</h3>
+                <p>La segunda ciudad cubana mas importante</p>
+                <p>
+                    <span class="destacado">Santiago de Cuba es la segunda ciudad más importante de Cuba debido a su historia, economía y población.</span>
+                    Fue históricamente capital de la provincia de Oriente (1878-1976) y capital del país durante los primeros años del dominio Colonial español; es en la actualidad cabecera de la provincia que lleva su nombre.
+                </p>
+                <div>
+                    <img class="foto-ciudad" src="https://imgs.search.brave.com/CcHpt3lK7xRtMekcOgvcpfwm1QPa63XUpQgs4jit3ZI/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5pc3RvY2twaG90/by5jb20vaWQvMTQ4/NDE1MjM4NC9waG90/by9zYW50aWFnby1k/ZS1jdWJhLWN1YmEu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PVBsQVhJRmg3b01D/RExzekxwSWRkSWxD/a29UeUVIRjNQWV92/VFdjaE5objg9" alt="Santiago de Cuba">
+                </div>
+            </div>
+        </section>
+
+        
+        <!-- Seccion 2 de la pagina -->
+        <section>
+            <div>
+                <!-- Aca apuntamos a una imagen que se encuentra 2 niveles arriba -->
+                <img id="foto-narwhal" src="../../Materiais presentacion/Narwhal_1_1995-06-10.jpeg" alt="Imagen narwhal">
+            </div>
+        </section>
+
+
+        <!-- Seccion formulario -->
+        <section>
+            <h3>Formulario</h3>
+            <h2>HTML Forms</h2>
+
+            <form action="/action_page.php">
+
+                <label for="fname">First name:</label><br>
+                <input type="text" id="fname" name="fname"><br>
+                
+                <label for="lname">Last name:</label><br>
+                <input type="text" id="lname" name="lname"><br><br>
+                
+                <br>
+                <input type="reset">
+                <input type="submit" value="Submit">
+            </form> 
+        </section>
+    </main>
+
+    <!-- Pie de pagina -->
+    <footer>
+        <h4>&#169; Aviso de copyright, hecho desde la div 131</h4>
+        <div>
+            <img class="logo" src="./img/logo-camino.jpg" alt="concha de santiago">
+        </div>
+    </footer>
+</body>
+</html>

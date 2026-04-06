@@ -1,0 +1,45 @@
+/* Selector de clase -> .nombreClase */
+.logo {
+    width: 65px;
+}
+
+.ciudad {
+    border: 2px solid;
+    margin: 5px;
+    padding: 5px;
+    font-family: monospace;
+}
+
+.foto-ciudad {
+    width: 300px;
+}
+
+.destacado {
+    font-weight: bold;
+    color: dodgerblue;
+    font-style: italic;
+}
+
+/* Selector de id -> #nombreId */
+#estero {
+    background-color: aquamarine;
+}
+
+#guayaquil {
+    background-color: beige;
+}
+
+#compostela {
+    background-color: deepskyblue;
+}
+
+#cuba {
+    background-color: hotpink;
+}
+
+#foto-narwhal {
+    width: 500px;
+}
+
+
+/* Media queries */

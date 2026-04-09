@@ -1,3 +1,15 @@
+/* ===================
+    Ajustes generales 
+    ==================*/
+
+/* Atajo para crear comentarios 
+    Ctrl + / 
+*/
+
+body {
+    margin: 0;
+}
+
 /* Selector de clase -> .nombreClase */
 .logo {
     width: 65px;
@@ -5,9 +17,24 @@
 
 .ciudad {
     border: 2px solid;
-    margin: 5px;
-    padding: 5px;
     font-family: monospace;
+    height: 500px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.ciudad-texto {
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 15px;
+    text-align: center;
+    height: 100%;
+    padding-top: 50px;
+}
+
+.ciudad-texto h3 {
+    margin-top: 0;
 }
 
 .foto-ciudad {
@@ -22,19 +49,23 @@
 
 /* Selector de id -> #nombreId */
 #estero {
-    background-color: aquamarine;
+    /* background-color: aquamarine; */
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fguialugaresturisticos.com%2Fwp-content%2Fuploads%2F2020%2F03%2FSantiago-del-Estero43998168934_708f15625b_k.jpg&f=1&nofb=1&ipt=7447f558290367c994120aed5cc7b5c706725af0162e85c92bc2a5d51074a06b");
 }
 
 #guayaquil {
-    background-color: beige;
+    /* background-color: beige; */
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmediaim.expedia.com%2Fdestination%2F1%2Fde36e92aa1599c96ee252e820af1d920.jpg%3Fimpolicy%3Dfcrop%26w%3D1040%26h%3D580%26q%3DmediumHigh&f=1&nofb=1&ipt=dfd58ef07c60b6b85c333b4b92446c60083595eb306bd2c438fa3a7544e9c37e");
 }
 
 #compostela {
-    background-color: deepskyblue;
+    /* background-color: deepskyblue; */
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.szlakjakuba.com%2Fwp-content%2Fuploads%2F2018%2F07%2FSantiago.jpg&f=1&nofb=1&ipt=3e522a16c9ba5284f0963e13ea1037daba7edbc7d4c93cd46eac9102959d81a4");
 }
 
 #cuba {
-    background-color: hotpink;
+    /* background-color: hotpink; */
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmedia.cntraveler.com%2Fphotos%2F56cb616f02e8256278c407df%2Fmaster%2Fpass%2FCatedral-de-la-Asuncion-cuba-cr-getty.jpg&f=1&nofb=1&ipt=20ee89549c6356ec850d804c51817a1354da5163304cd8533f2dce0c7ca197cd");
 }
 
 #foto-narwhal {
@@ -42,4 +73,6 @@
 }
 
 
-/* Media queries */
+/* =================
+    Media queries 
+    ==============*/

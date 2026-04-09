@@ -1,6 +1,7 @@
 # UTN2026_c1Div131
 
 ## Frontend
+- Prox clase, avanzamos con CSS y hacemos live coding
 
 ---
 

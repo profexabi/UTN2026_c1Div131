@@ -6,18 +6,44 @@
     Ctrl + / 
 */
 
+/* Como trabajar con una fuente local (navegar hasta /fonts) */
+@font-face {
+    font-family: "FuenteMedieval";
+    src: url("../fonts/MedievalSharp/MedievalSharp-Regular.ttf");
+}
+
 body {
     margin: 0;
+    /* Aca le pongo el nombre que indique en el font-family del @font-face */
+    font-family: "FuenteMedieval";
+}
+
+
+/* Combinador */
+header ul {
+    padding-left: 0;
+    list-style-type: none;
+    margin: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+.logo-container {
+    display: flex;
+    /* border: 1px solid; */
+    width: 30%;
+    justify-content: space-between;
+    align-items: center;
 }
 
 /* Selector de clase -> .nombreClase */
 .logo {
-    width: 65px;
+    width: 40px;
 }
 
 .ciudad {
     border: 2px solid;
-    font-family: monospace;
+    /* font-family: monospace; */
     height: 500px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -27,7 +53,7 @@ body {
 .ciudad-texto {
     background-color: rgba(0, 0, 0, 0.8);
     color: white;
-    font-size: 15px;
+    font-size: 20px;
     text-align: center;
     height: 100%;
     padding-top: 50px;
@@ -71,6 +97,52 @@ body {
 #foto-narwhal {
     width: 500px;
 }
+
+
+/* ======================
+    Pseudoclases 
+    =====================
+Las pseudoclases en CSS son palabras clave que se añaden a los selectores para especificar un estado especial de un elemento. Permiten aplicar estilos a elementos bajo ciertas condiciones o estados
+
+Pseudoclases de interaccion de usuario*/
+
+a {
+    padding: 10px;
+    /* Para eliminar el subrayado */
+    text-decoration: none;
+}
+
+/* hover: pasar el mouse arriba 
+a:hover {
+    border: 2px solid deeppink;
+    background-color: deeppink;
+    color: white;
+}
+*/
+
+/* active: cuando se esta haciendo click en un elemento */
+a:active {
+    color: limegreen;
+}
+
+
+/* visited: se aplica a enlaces que fueron previamente visitados */
+a:visited {
+    color: red;
+}
+
+
+/* ==============================
+    Uds absolutas y relativas
+    ============================= 
+    
+Unidades absolutas, siempre son px y no cambian el tamaño de un dispositivo a otro
+
+Unidades relativas dependen del tamaño del contenedor padre o del tamaño de la pantalla
+
+- Para fuentes usamos rem
+- Para otros elementos y contenedores usamos % y otras veces usaremos vw y vh
+*/
 
 
 /* =================

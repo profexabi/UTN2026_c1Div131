@@ -18,12 +18,19 @@
             background-color: darkslateblue;
             color: white;
             /* Fuentes web-safe: https://www.w3schools.com/cssref/css_websafe_fonts.php */
-            font-family: Arial, Helvetica, sans-serif;
+            /* font-family: Arial, Helvetica, sans-serif; */
         }
     </style>
 
     <!-- CSS Externo o external CSS -->
     <link rel="stylesheet" href="css/styles.css">
+
+    <!-- CDN de Google Fonts -->
+    <!-- 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap" rel="stylesheet">
+    -->
 </head>
 
 <!-- Ctrl + / para crear comentarios automaticos -->
@@ -31,9 +38,11 @@
     <!-- Encabezado, parte superior de la pagina -->
     <header>
         <!-- Primer contenedor de nuestra cabezera, que contiene logo y titulo -->
-        <div>
+        <div class="logo-container">
             <div>
-                <img class="logo" src="img/logo-camino.jpg" alt="concha de santiago">
+                <a href="https://es.wikipedia.org/wiki/Santiago_de_Compostela">
+                    <img class="logo" src="img/seashell.png" alt="concha de santiago">
+                </a>
             </div>
             <h1>Fans de Santiago</h1>
             <!-- CSS en linea o inline, NO recomendado 
@@ -44,9 +53,17 @@
         <!-- Contenedor de navegacion -->
         <nav>
             <ul>
-                <li>Home</li>
-                <li>Acerca de</li>
-                <li>Contacto</li>
+                <a href="#home">
+                    <li>Home</li>
+                </a>
+
+                <a href="#about">
+                    <li>Acerca de</li>
+                </a>
+
+                <a href="#contact">
+                    <li>Contacto</li>
+                </a>
             </ul>
         </nav>
     </header>
@@ -138,6 +155,20 @@
         </section>
 
 
+        <!-- Seccion pseudoclases -->
+        <section>
+            <h1>Style a link</h1>
+
+            <p><a href="https://fonts.google.com/" target="_blank">Fuentes de Google</a></p>
+
+            <ul>
+                <li>Lista</li>
+                <li>Lista</li>
+                <li>Lista</li>
+            </ul>
+        </section>
+
+
         <!-- Seccion formulario -->
         <section>
             <h3>Formulario</h3>
@@ -189,7 +220,7 @@
     <footer>
         <h4>&#169; Aviso de copyright, hecho desde la div 131</h4>
         <div>
-            <img class="logo" src="./img/logo-camino.jpg" alt="concha de santiago">
+            <img class="logo" src="img/seashell.png" alt="concha de santiago">
         </div>
     </footer>
 </body>

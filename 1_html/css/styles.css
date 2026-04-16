@@ -18,23 +18,101 @@ body {
     font-family: "FuenteMedieval";
 }
 
+a {
+    color: white;
+    text-decoration: none;
+}
 
-/* Combinador */
-header ul {
-    padding-left: 0;
-    list-style-type: none;
-    margin: 0;
+
+/* =====================
+    Posicionamiento
+    ==================== 
+*/
+header {
     display: flex;
-    justify-content: space-around;
+    height: 65px;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
 }
 
 .logo-container {
+    border: 1px solid;
     display: flex;
-    /* border: 1px solid; */
-    width: 30%;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
+    width: 30%;
 }
+
+nav {
+    width: 70%;
+    align-items: center;
+    border: 1px solid greenyellow;
+}
+
+header nav ul {
+    padding-left: 0;
+    list-style-type: none;
+    margin: 0;
+    border: 1px solid fuchsia;
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+
+
+/* =================
+    Media Queries
+================== */
+
+/* Medidas estandarizadas
+
+    Breakpoints
+    
+    <576px: Extra Small (Portrait phones)
+    ≥576px: Small (Landscape phones)
+    ≥768px: Medium (Tablets)
+    ≥992px: Large (Laptops)
+    ≥1200px: Extra Large (Desktops)
+*/
+
+/* Tablet horizontal 1200 px */
+
+@media (max-width: 1200px) {
+    
+    header {
+        flex-direction: column;
+        height: 120px;
+        justify-content: space-around;
+    }
+
+    .logo-container {
+        width: 50%;
+    }
+
+}
+
+@media (max-width: 750px) {
+
+    .logo-container {
+        width: 80%;
+    }
+
+    header nav {
+        width: 100%;
+    }
+}
+
+
+
+
+
+
+
+/* Combinador */
 
 /* Selector de clase -> .nombreClase */
 .logo {

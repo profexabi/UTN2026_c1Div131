@@ -20,6 +20,10 @@
             /* Fuentes web-safe: https://www.w3schools.com/cssref/css_websafe_fonts.php */
             /* font-family: Arial, Helvetica, sans-serif; */
         }
+
+        h1 ~ p {
+            color: purple;
+        }
     </style>
 
     <!-- CSS Externo o external CSS -->
@@ -35,6 +39,54 @@
 
 <!-- Ctrl + / para crear comentarios automaticos -->
 <body>
+
+
+    <!-- Combinadores en CSS
+    - Son caracteres que permiten seleccionar elementos en funcion con otros elementos en el arbol del DOM
+    - Los combinadores definen la forma en que se conectan los selectores y como se relacionan los elementos entre si -->
+
+    <!-- Combinador descendiente " "
+    Selecciona todos los elementos que son descendientes de un elemento padre (sin importar que tan profundo esten en el arbol DOM) 
+    <div>
+        <p>Este parrafo será azul</p>
+        <section>
+            <p>Este también será azul, ya que es un descendiente del div</p>
+        </section>
+    </div>
+    <p>Este párrafo no será azul porque no es descendiente del div</p>
+    -->
+
+
+    <!-- Combinador de hijo directo ">" 
+    El combinador de hijo directo selecciona solo los elementos que son hijos inmediatos de un elemento padre
+    <div>
+        <p>Este párrafo será rojo</p>
+        <section>
+            <p>Este no será rojo, ya que es descenciente, pero no hijo directo</p>
+        </section>
+    </div>
+    <p>Holi, yo pasaba por acá</p>
+    -->
+
+
+    <!-- Combinador de hermano adyacente "+" 
+    Selecciona un elemento que es el hermano INMEDIATO de otro elemento, es decir, el que aparece justo despues de el en el mismo nivel del dom
+    <h1>Titulo</h1>
+    <p>Este párrafo será verde porque es el hermano adyacente del h1</p>
+    <p>Este párrafo no será verde</p>
+    -->
+
+
+    <!-- Combinador de hermano general "~" 
+    Selecciona todos los elementos hermanos de un elemento, no necesariamente adyacentes. Deben compartir el mismo padre-->
+    <!--
+    <div id="test">
+        <h1>Titulo</h1>
+        <p>Este párrafo será morado porque es el hermano del h1</p>
+        <p>Este párrafo tambien será morado</p>
+    </div>
+    -->
+    
     <!-- Encabezado, parte superior de la pagina -->
     <header>
         <!-- Primer contenedor de nuestra cabezera, que contiene logo y titulo -->

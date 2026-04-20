@@ -10,7 +10,6 @@
 - CSS II
     - Pseudoclases
     - Unidades absolutas y relativas
-    - [GDB de pagina apple](https://onlinegdb.com/WE0aJmtDm)
 
 - CSS III
     - Combinadores
@@ -20,6 +19,12 @@
 
 - CSS IV 
     - Media queries y live coding
+
+---
+
+## Prox clase 23/04
+- JavaScript 1 y 2 y continuar footer de apple
+    - [GDB de pagina apple](https://onlinegdb.com/zayM8FVhi)
 
 ---
 
@@ -35,6 +40,7 @@
 
 - [Ejemplos de boxshadow](https://getcssscan.com/css-box-shadow-examples)
 - [Plantilla simple para practicar flexbox](https://onlinegdb.com/Zyi4V7ajp)
+- [CSS Gradient para crear degradados personalizados](https://cssgradient.io/)
 
 ---
 

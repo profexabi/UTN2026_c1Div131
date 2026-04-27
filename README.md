@@ -22,7 +22,7 @@
 
 ---
 
-## Prox clase 23/04
+## Prox clase 27/04
 - JavaScript 1 y 2 y continuar footer de apple
     - [GDB de pagina apple](https://onlinegdb.com/zayM8FVhi)
 

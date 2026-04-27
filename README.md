@@ -22,8 +22,10 @@
 
 ---
 
-## Prox clase 27/04
-- JavaScript 1 y 2 y continuar footer de apple
+## Prox clase 30/04
+- JavaScript III y live coding (maquetacion especialmente + diseño)
+
+- Continuar footer de apple
     - [GDB de pagina apple](https://onlinegdb.com/zayM8FVhi)
 
 ---

@@ -20,10 +20,15 @@
 - CSS IV 
     - Media queries y live coding
 
+
 ---
 
-## Prox clase 30/04
-- JavaScript III y live coding (maquetacion especialmente + diseño)
+
+## Prox clase 04/05
+- JavaScript III desde funciones 
+- JavaScript IV
+
+y live coding (maquetacion especialmente + diseño)
 
 - Continuar footer de apple
     - [GDB de pagina apple](https://onlinegdb.com/zayM8FVhi)
@@ -48,3 +53,19 @@
 
 ## Backend
 ### [Clase 2hs Protocolo HTTP y lenguaje HTML](https://www.youtube.com/watch?v=l6oF_RpBf64)
+
+---
+
+## Recursos Extra
+
+### Introduccion a Bash
+- [Tutorial Hostinger](https://www.hostinger.com/es/tutoriales/bash-script-linux)
+- [Tutorial Freecodecamp](https://www.freecodecamp.org/espanol/news/tutorial-de-programacion-de-bash-script-de-shell-de-linux-y-linea-de-comandos-para-principiantes/)
+- [Tutorial datacamp](https://www.datacamp.com/es/tutorial/how-to-write-bash-script-tutorial)
+
+
+---
+
+### Introduccion a Docker
+- [Tutorial ionos](https://www.ionos.es/digitalguide/servidores/configuracion/tutorial-docker-instalacion-y-primeros-pasos/)
+- [Tutorial freecodecamp](https://www.freecodecamp.org/espanol/news/guia-de-docker-para-principiantes-como-crear-tu-primera-aplicacion-docker/)

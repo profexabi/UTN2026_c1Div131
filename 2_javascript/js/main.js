@@ -1,275 +1,181 @@
 /*=====================
-    Control de flujo
+    Scope o Ambito
 =======================
 
-El control de flujo determina como se ejecutan las instrucciones de un programa.
+El scope o ambito en JavaScript se refiere al contexto en el cual las variables y funciones son accesibles y pueden ser referenciadas (su alcance).
 
-Al diseñar un programa es importante establecer que partes del codigo se ejecutan y bajo que condiciones. En JS lo logramos mediante estructuras de control que permiten ejecutar sentencias de codigo basadas en decisiones, repeticiones o condiciones especificas.
+Tipos de Scope:
 
-    1. Condicionales
-        - if, else if, else
-        - Operadores logicos: &&, ||, !
-        - Operadores ternarios
+    1. Global Scope o Ambito Global
 
-    2. Bucles
-        - for, while, do...while
-
-    3. Control de flujo avanzado
-        - break
-        - continue
-        - switch
+    - Las variables declaradas fuera de cualquier funcion o bloque tienen alcance global y son accesibles desde cualquier parte del codigo.
+    - Esto incluye a var, let y const
+    - En un navegador, las variables globales se adjuntan al objeto window. Esto afecta solo a las variables var 
 */
+
+var globalVar = "Soy global";
+
+function mostrarGlobal() {
+    console.log(globalVar);
+}
+
+mostrarGlobal();
+console.log(globalVar);
+
+
+/*    
+    2. Local Scope o Function Scope / Ambito local o Ambito de funcion
+
+    - Afectan solamente a var
+    - Las variables declaradas dentro de una funcion solo son accesibles dentro de esa funcion. Estas variables tienen un ambito local
+*/
+
+function mostrarLocal() {
+    var localVar = "Soy local";
+    console.log(localVar);
+}
+
+mostrarLocal();
+// console.log(localVar); // Uncaught ReferenceError: localVar is not defined
+
+
+/*    
+    3. Block Scope o Ambito de bloque
+
+    - Las variables declaradas con let y const tienen alcance de bloque
+    - Solo son accesibles dentro del bloque en que se declararon -> {}
+    - El bloque incluye un if, un for, etc
+*/
+
+if (true) {
+    let bloqueLet = "Soy de bloque";
+    console.log(bloqueLet);
+}
+
+// console.log(bloqueLet); // Uncaught ReferenceError: bloqueLet is not defined
+
 
 /*
-// Pedimos input al usuario (todo prompt devuelve string, por eso parseamos)
-let edad = parseInt(prompt("Introduci tu edad"));
-// Usamos las backticks o tildes invertidas ` y concatenamos texto con valores
-console.log(`Tenés ${edad} años, dato tipo: ${typeof edad}`);
-// console.log("Tenes " + edad + " años, dato tipo: " + edad); 
+Scope Chain o Cadena de Ambito
 
-// Ejemplo 1 if else
-if (edad >= 18) {
-    console.log("Sos mayor de edad");
-
-} else if (edad < 18 && edad > 0 ) {
-    console.log("Sos menor de edad");
-
-} else {
-    console.log("Edad invalida");
-}
-
-// Ejemplo 2 if else
-let tieneLicencia = true;
-
-// Ambas condiciones deben cumplirse
-if (edad >= 18 && tieneLicencia) {
-    console.log("Podes manejar! Yupiii")
-}
-
-// Al menos una condicion debe cumplirse
-if (edad < 18 || !tieneLicencia) {
-    console.log("No podes manejar! Que cagada!");
-}
+Cuando intentamos acceder a una variable, JavaScript busca en la cadena de ambito, comenzando por el ambito mas interno moviendose hacia los ambitos externos hasta encontrar la variable o llegar al ambito global
 */
 
+var varGlobal = "Soy global";
 
-/*=====================
-    Operador !
-=======================
+function externa() {
+    var varExterna = "Soy externa";
 
-El operador "!" NOT invierte el valor booleano de una expresion.
-Si la expresion es true, se convierte en false y viceversa
+    function interna() {
+        var varInterna = "Soy interna";
 
-El uso del operador ! es comun para implementar la logica de "toggle" (o alternador) y alternar entre true y false cuando se activa
-*/
-
-let estado = true;
-
-// Una funcion es un bloque de codigo reutilizable
-function alterarEstado() {
-    estado = !estado;
-    console.log(`Nuevo estado: ${estado}`);
-}
-
-// Invocamos la funcion que acabamos de escribir para usar todo ese bloque de codigo
-alterarEstado();    // false
-alterarEstado();    // true
-alterarEstado();    // false
-
-
-// Operador ternario: Es simplemente una forma mas compacta de escribir una condicion if else
-let edad = 33;
-
-// Despues del "?" escribimos la respuesta si la condicional se cumple, si no se cumple, va despues del ":"
-let mensaje = (edad >= 18) ? "Sos mayor de edad!" : "Sos menor de edad";
-console.log(mensaje);
-
-let temperatura = 24;
-let prediccion;
-
-prediccion = (temperatura >= 23) ? "Hace calor" : "Hace frio";
-console.log(prediccion);
-
-
-/*=================
-    Bucle for
-===================
-Se usa cuando se conoce de antemano el numero de iteraciones
-
-    for (inicializacion; condicion; incremento) {
-        // Codigo a ejecutar en cada iteracion
-    }
-*/
-
-for (let i = 0; i < 5; i++) {
-    console.log(`Iteracion: ${i}`);
-}
-
-// EJERCICIO SUGERIDO! Crear una tabla de multiplicar del 3
-// 1 x 1 = 1
-// 1 x 2 = 2
-// 1 x 3 = 3
-// 2 x 1 = 2
-
-for (let i = 1; i < 4; i++) {
-
-    for (let j = 1; j < 4; j++) {
-        console.log(`${i} x ${j} = ${i * j}`);
+        console.log(varGlobal); 
+        console.log(varExterna);
+        console.log(varInterna);
     }
 
+    interna(); // soy global    soy externa     soy interna
+
+    // console.log(varInterna); // Uncaught ReferenceError: varInterna is not defined
 }
 
-/* ===================================
-    Que pasa en este bucle anidado?
-======================================
-
-    i es 1
-    arranca a ejecutarse el primer bucle de i
-    esta ejecucion dura lo que dure el segundo bucle, que va a loopear 3 veces
-    todas las veces que loopea el bucle de abajo, i no se incrementa, porque todavia esta en su primer vuelta
-
-    la primer vuelta del bucle de abajo, j vale 1
-    el console log va a tomar 1 (i) x 1 (j) = 1 * 1
-
-    j (el segundo bucle) termino su primer vuelta: j se incrementa en 1
-    j vale ahora 2, pero i sigue valiendo 1, porque todavia no termino el bucle de abajo
-    el console log va a tomar i = 1 x j = 2 = 1 * 2
-    j se incrementa en 1, ahora vale 3. 3 sigue siendo inferior a 4? true
-    el console log va a tomar i = 1 x j = 3 = 1 * 3
-
-    que paso ahora? al terminar el bucle de abajo -> SE INCREMENTA EL I porque el bloque de codigo a ejecutar en el loop TERMINOOOOOOOO
-
-    Ahora i vale 1
-    arranca a ejecutarse la segunda iteracion del bucle i
-    el console log va a tomar i = 2 x j = 1 = 2 * 1
-
-*/
-console.log("Fin de la tabla simple del 3");
-
-// EJERCICIO SUGERIDO! Creen de 0, sin mirar el ejercicio anterior, una tabla de multiplicar del 1 al 10 completa
+externa();
 
 
+/*===============================
+    Function vs Block Scope
+=================================
 
-/*=================
-    Bucle while
-===================
-Ejecuta el bloque de codigo mientras la condicion sea verdadera
+Function Scope: Las variables declaradas con var tienen ambito de funcion, pero no estan limitadas por bloques { }
 
-    while (condicion) {
-        // Codigo a ejecutar mientras la condicion sea verdadera
-    }
+Block Scope: Las variables declaradas con let y const estan limitadas por el bloque en el que se declaran
 */
 
-// Vamos a hacer un bucle while mientras la variable contador sea menor que 3
-let contador = 0;
-
-while (contador < 3) {
-    console.log("Iteracion while: " + contador);
-    contador++;
-}
-
-
-/*====================
-    Bucle do...while
-======================
-Es similar al while, pero la condicion se evalua despues de ejecutar el bloque de codigo.
-Lo que garantiza que el codigo se ejecutara al menos una vez
-
-    do {
-        // Codigo a ejecutar
-    } while (condicion)
-*/
-
-// Bucle do...while hasta 5
-let acumulador = 0;
-
-do {
-    console.log(`Iteracion de do...while: ${acumulador}`);
-    acumulador++;
-} while (acumulador < 6);
-
-
-
-/*=================================
-    Control de flujo avanzado I
-===================================
-
-break: Se usa para salir inmediatamente de un bucle o una estructura de control
-
-continue: Salta a la siguiente iteracion del bucle, omitiendo el codigo restante dentro del bucle para esa iteracion
-*/
-
-// Ejemplo break
-for (let i = 0; i < 10; i++) {
-
-    if (i === 5) {
-        break; // Salgo de un bucle
+// Ejemplo de alcance local o de funcion
+function scopeFunction() {
+    if (true) {
+        var funcionVar = "Soy var de funcion";
     }
 
-    console.log(`Iteracion de i: ${i}`);
+    console.log(funcionVar);
 }
 
-// Ejemplo continue
-for (let i  = 0; i < 10; i++) {
+scopeFunction();
 
-    // Saltamos las iteraciones en las que i es par
-    if (i % 2 === 0) {
-        continue; // Salta a la siguiente iteracion del bucle y omite el resto del codigo
+
+// Ejemplo de alcance de bloque
+function scopeBlock() {
+    if (true) {
+        let letBloque = "Soy de bloque";
+        const constBloque = "Soy una const de bloque";
     }
 
-    console.log("Numero impar: " + i);
+    // console.log(letBloque); // Uncaught ReferenceError: letBloque is not defined
+    // console.log(constBloque); // Uncaught ReferenceError: constBloque is not defined
 
 }
 
+scopeBlock();
 
-/*=================================
-    Control de flujo avanzado II
-===================================
 
-// Ejemplo switch
+/*===============================
+    Hoisting o Elevacion
+=================================
 
-switch: Es otra estructura de control que permite evaluar una expresion y ejecutar el bloque de codigo correspondiente al caso que coincide
+Las declaraciones de variables y funciones en JavaScript se "mueven hacia arriba" de su contexto de ejecucion (scope).
 
-switch (expresion) {
-    case valor1:
-        // Codigo a ejecutar si la expresion es igual a valor1
-        break;
-        
-    case valor2:
-        // Codigo a ejecutar si la expresion es igual a valor1
-        break;
-        
-    default:
-        // Codigo que se ejecuta si ninguno de los casos coincide                
-    }
+Variables con var: Se elevan y se inicializan con undefined
+
+Variables con let y const: Se elevan pero no se inicializan, lo que lleva a un error si se accede antes de la declaracion
 */
 
-// Ejercicio: Vamos a pedirle al usuario que ingrese una dia de la semana y devolveremos el nombre de los 5 dias laborales o fin de semana
+console.log(elevadaVar); // undefined
+var elevadaVar = "Soy una var elevada";
+console.log(elevadaVar);
 
-// Le pedimos input al usuario
-let diaSemana = parseInt(prompt("Introduci dia de la semana"));
 
-switch (diaSemana) {
-    case 1:
-        console.log("Lunes");
-        break;
+// console.log(elevadaLet); // Uncaught ReferenceError: Cannot access 'elevadaLet' before initialization
+let elevadaLet = "Soy una let elevada";
+console.log(elevadaLet);
 
-    case 2:
-        console.log("Martes");
-        break;
 
-    case 3:
-        console.log("Miercoles");
-        break;
+/*=========================================
+    Diferencias entre var, let y const
+===========================================
 
-    case 4:
-        console.log("Jueves");
-        break;
+var: Tiene ambito de funcion, permite la redeclaracion y la reasignacion
 
-    case 5:
-        console.log("Viernes");
-        break;
+let: Tiene ambito de bloque {}, NO permite la redeclaracion pero SI la reasignacion
 
-    default:
-        console.log("Fin de semana");
-}
+const: TIene ambito de bloque {} NO permite la redeclaracion y tampoco la reasignacion
+
+
+- Tanto let como const se introdujeron en ES6 para mejorar el ambito de las variables y reducir la probabilidad de anulaciones accidentales de variables
+
+- tanto let como const NO permiten la elevacion mientras que var si
+
+- const asegura que el valor de la variable permanece constante, mientras que let permite la reasignacion, aunque objetos y arrays con const si pueden modificarse
+
+
+// Algunas recomendaciones!
+
+- Usemos const para variables de solo lectura como constantes u objetos inmutables
+
+- Usemos let para variables que puedan cambiar con el tiempo, pero que NO deban volver a declararse
+
+- Evitemos usar var, debido a su ambito global o de funcion y su hoisting, lo que puede dar lugar a conflictos y bugs
+*/
+
+// Let
+let x = 10;
+x = 20; // Le reasignamos un valor
+// let x = 20; // ERROR! No permite redeclarar una variable
+
+// Const
+const obj = { nombre: "Santiago" };
+obj.nombre = "Gonzalo";
+
+console.log(obj);
+// obj = {}; // Uncaught TypeError: Assignment to constant variable.
+
+

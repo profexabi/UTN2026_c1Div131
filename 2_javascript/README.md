@@ -3,6 +3,26 @@
 
 
 ## JavaScript III / Scope y ambito funciones y tipos de funciones
+
+### *Como ejecuta las instrucciones JavaScript internamente?*
+**JavaScript internamente “lee” el código antes de ejecutarlo**, realizando un proceso en dos fases:
+
+**1. Fase de compilación** (o creación del contexto)
+
+Antes de ejecutar línea por línea, el motor de JavaScript analiza todo el código. En esta etapa:
+
+- Registra variables y funciones.
+- Determina el alcance (scope).
+- Prepara el entorno de ejecución.
+
+**2. Fase de ejecución**
+
+Recién después ejecuta el código en orden.
+
+
+---
+
+
 ```js
 /*=====================
     Scope o Ambito

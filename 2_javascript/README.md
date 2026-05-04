@@ -2,6 +2,12 @@
 ## [Wikipedia JavaScript](https://es.wikipedia.org/wiki/JavaScript)
 
 
+## JavaScript IV / Introduccion a arrays y objetos. Metodos de strings y arrays
+
+
+---
+
+
 ## JavaScript III / Scope y ambito funciones y tipos de funciones
 
 ### *Como ejecuta las instrucciones JavaScript internamente?*
@@ -81,7 +87,7 @@ if (true) {
 // console.log(bloqueLet); // Uncaught ReferenceError: bloqueLet is not defined
 
 
-/*
+/*==============================
 Scope Chain o Cadena de Ambito
 
 Cuando intentamos acceder a una variable, JavaScript busca en la cadena de ambito, comenzando por el ambito mas interno moviendose hacia los ambitos externos hasta encontrar la variable o llegar al ambito global
@@ -202,9 +208,226 @@ const obj = { nombre: "Santiago" };
 obj.nombre = "Gonzalo";
 
 console.log(obj);
-// Estariamos alterando la posicion en memoria al asignar que el espacio previo en memoria que tenia el objeto, ahora se cambio
 // obj = {}; // Uncaught TypeError: Assignment to constant variable.
 
+
+
+/*==============================
+    Funciones en JavaScript
+================================
+
+Una funcion es un bloque de codigo reutilizable que se puede ejecutar cuando se llama por su nombre.
+Las funciones son fundamentales para la modularidad y la reutilizacion del codigo
+
+Por que usar funciones?
+    - Facilitan la organizacion del codigo
+    - Permiten la reutilizacion
+    - Mejoran la legibilidad y el mantenimiento
+
+
+//////////////////////////////////////    
+// Sintaxis de una funcion declarada
+
+La forma mas comun de declarar una funcion en JavaScript es usando la palabra clave function
+
+    function nombreFuncion() {
+        // Bloque de codigo que se ejecutara cuando se llame a la funcion
+    }
+
+
+Vamos a poder definir "variables" en las funciones que acepten valores cuando se les llame, estos son los parametros*/
+
+// Los PARAMETROS son los nombres de las "variables" que definimos en la declaracion de la funcion
+function sumar(a, b) {
+    let resultado = a + b;
+    console.log(`El resultado es: ${resultado}`);
+}
+
+// Los ARGUMENTOS son los valores que pasamos a la funcion cuando la llamamos
+sumar(5, 3);
+
+
+// Las funciones pueden DEVOLVER UN VALOR utilizando la palabra clave return
+function multiplicar(a, b) {
+    return a * b;
+}
+
+// Opcion 1: Guardo el valor retornado en una variable, luego lo consologueo
+let resultadoMulti = multiplicar(4, 5);
+
+// Opcion 2: Directamente llamo a la funcion adentro de un console.log
+console.log(multiplicar(4, 5));
+
+
+/*===============================
+    Tipos de funciones en JS
+=================================
+
+1. Funcion declarada / Named function o Basic function
+
+    Es la declaracion basica de JavaScript, usa la keyword function
+
+    Se recomienda para funciones con nombre o cuando se necesite hoisting.
+    Las funciones declaradas con la keyword function, se pueden elevar a la parte superior de su ambito, es decir, del scope que las contiene, lo que permiten llamar a la funcion antes de ser declarada
+*/
+
+saludar(); // Hola holiiiiita veciniiiiito
+
+function saludar() {
+    console.log("Hola holiiiiita veciniiiiito");
+}
+
+
+/* Funcion expresada / Function expression
+
+    Es la funcion que esta dentro de una variable
+
+    Son utiles para cuando se quiere controlar donde va a estar disponible la funcion (al contrario que el hoisting de las declaradas) o para cuando va a ser usada como argumento para otra funcin
+*/
+
+// despedida(); // Uncaught ReferenceError: Cannot access 'despedida' before initialization
+
+const despedida = function() {
+    console.log("Chau, nos vimos en Disney");
+}
+
+despedida();
+
+
+/* Function anonima / Anonymous function
+
+    No tiene nombre y se usan como callbacks generalmente
+
+    Esta funcion ya es preexistente, es parte de las funciones que nos provee el entorno de ejecucion del navegador (por eso es que no la declaramos)
+
+    - setTimeout() programa para ejecutar una vez una funcion
+    - setInterval() ejecuta una funcion cada x segundos
+*/
+setTimeout(function() {
+    console.log("Hola despues de 1 segundo");
+}, 1000);
+
+
+/* Funcion de flecha / Arrow function
+
+    Especialmente util para escribir funciones de una linea
+*/
+
+const sumarDosNums = (a, b) => a + b;
+console.log(sumarDosNums(2, 3));
+
+
+/* Funcion de metodos / Method function
+
+    Son las funciones definidas dentro de un objeto
+*/
+
+const profe = {
+    nombre: "Kevin",
+    saludar() {
+        console.log(`Hola! Soy el profe ${this.nombre}`);
+    }
+}
+
+profe.saludar();
+
+
+/* Expresion de funcion ejecutada inmediatamente / IIFE - Immediately Invoked Function Expressions
+
+    Las IIFE son funciones que se ejecutan inmediatamente despues de haberse definido
+*/
+
+(function() {
+    console.log("Esta es una IIFE!");
+})(); // Ni bien se termina de definir, se invoca
+
+
+
+/* Funcion de orden superior / High order function
+
+    Las high order functions (HOF) nos permiten usar otras funciones como parametros o devolver funciones como resultado.
+
+    Vamos a trabajarlas en JavaScript V
+*/
+
+
+
+/* Funcion asincronica / Async function
+
+    Las funciones asincronicas se declaran con la keyword async y devuelven un objeto Promise que representa la terminacion o el fracaso de una operacion asincronica
+
+    Se usa el operador await para esperar a la operacion asincronica
+
+    Vamos a trabajarlas en JavaScript VIII
+*/
+
+
+
+/*===============================
+    Tipos de funciones flecha
+=================================
+
+La idea de estas funciones es simplificar y ahorrar codigo a la hora de escribir funciones. Cuando son en una sola linea, el return esta implicito y no hacen falta llaves.
+
+Lo ideal es usar funciones flecha en una sola linea, cuando escribimos una funcion sencilla
+
+
+1. Funcion flecha SIN parametros
+
+    Si la funcion no lleva parametros, se pueden usar parentesis vacias
+*/
+
+const saludarFlecha = () => console.log("Hola desde una funcion flecha");
+saludarFlecha();
+
+
+/*
+2. Funcion flecha con UN SOLO parametro
+
+    Si hay un solo parametro, las parentesis son opcionales
+*/
+
+// SI NECESITARAN ESCRIBIR return, no hace falta, el return esta implicito
+const cuadrado = x => x * x; 
+console.log(cuadrado(4));
+
+
+/*
+3. Funcion flecha con mas de un parametro
+*/
+
+const restar = (a, b) => a - b;
+console.log(restar(5, 2));
+
+
+/*
+4. Funcion flecha con MAS DE UNA INSTRUCCION en la funcion
+
+    Si el cuerpo de la funcion tiene mas de una instruccion, necesitamos:
+        - { }
+        - return (si queremos devolver un valor)
+*/
+
+const saludarPersona = nombre => {
+    const saludo = `Hola, ${nombre}!`;
+    return saludo;
+}
+
+console.log(saludarPersona("Santiago"));
+
+
+/*
+5. Funcion flecha para usar HOF
+
+    Las trabajaremos en JavaScript V
+
+    Las funciones flecha son especialmente populares usando HOF
+*/
+
+let numeros = [1, 2, 3, 4, 5];
+
+const duplicar = numeros.map(num => num * 2);
+console.log(duplicar); // [2, 4, 6, 8, 10]
 ```
 
 ---

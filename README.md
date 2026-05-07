@@ -1,5 +1,8 @@
 # UTN2026_c1Div131
 
+## Primer parcial 21 de mayo
+## Recuperatorio 28 de mayo (asincronico)
+
 ## Frontend
 - HTML I hasta forms
 

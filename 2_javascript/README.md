@@ -2,6 +2,82 @@
 ## [Wikipedia JavaScript](https://es.wikipedia.org/wiki/JavaScript)
 
 
+## JavaScript V / Objetos globales, almacenamiento persistente. Iteracion en arrays, objetos y arrays de objetos
+
+### Objetos globales
+En JavaScript, los objetos globales son aquellos que estan disponibles en todo el entorno de ejecucion sin necesidad de impotarlos o declararlos explicitamente.
+
+Por entorno de ejecucion, nos referimos a donde se esta ejecutando JavaScript, puede ser el Navegador o Node.js. Ambos tienen internamente un motor que ejecuta este lenguaje.
+
+El proposito facilitar el acceso a ciertas funciones y valores predeterminados.
+
+#### Objetos globales en el navegador
+En el entorno del navegador, los objetos globales incluyen todos los objetos estandar de JavaScript (`Array`, `String`, `Object`, etc) asi como un conjunto de objetos especificos para la interaccion con la pagina web y su entorno.
+
+El objeto global principal en el entorno del navegador es `window`. Este objeto representa la ventana del navegador y actua como el contenedor global para todas las funciones y objetos globales en una pagina web. Todos los objetos y funciones definidos en el ambito global estan automaticamente disponibles como propiedades del objeto `window`.
+
+#### Objetos y metodos impotantes del objeto `window`
+
+- `document`: Representa el [DOM](https://www.w3schools.com/js/js_htmldom.asp) de la pagina web actual, permitiendo el acceso y la manipulacion de elementos HTML. 
+*Trabajaremos con document en JavaScript VI*
+
+```html
+<p id="miParrafo">Soy un parrafo</p>
+```
+```js
+// Selecciono el parrafo por su id y lo guardo en una variable
+let parrafo = document.getElementById("miParrafo");
+```
+
+- `alert()`, `prompt()` y `confirm()`: Son metodos que permiten mostrar dialogos al usuario y recoger input
+```js
+alert("Holis desde una ventana flotante");
+```
+
+- `setTimeout()` y `setInterval()`: Metodos para programar la ejecucion de codigo despues de un tiempo (setTimeout) o en intervalos regulares (setInterval)
+```js
+setTimeout(() => console.log("Hola despues de 2 segundos"), 2000);
+```
+
+- `location`: Proporciona URL sobre la pagina actual y permite redireccionar a otras URL
+```js
+console.log(window.location.href); //URL actual
+```
+
+- `navigator`: Contiene info sobre el navegador, la version, agente de usuario y geolocalizacion
+```js
+console.log(navigator.userAgent); // Info del navegador
+```
+
+- `console`: Proporciona acceso a la consola del navegador para mostrar mensajes de depuracion
+```js
+console.log("Mensaje por consola");
+```
+
+- `localStorage` y `sessionStorage`: Permiten almacenar datos en el navegador de forma persistente o temporal
+
+- `history`: Proporciona acceso al historial de navegacion del navegador
+
+
+### Por que en JavaScript son todo objetos?
+Aunque no todos los tipos de datos en JS son objetos, muchos tipos de datos tienen comportamiento de objeto o estan envueltos en un objeto.
+
+1. **Datos primitivos**: strings, numeros, booleanos, null y undefined son tipos primitivos. Pero JavaScript convierte temporalmente los strings y los numeros y los convierte en un *"objeto envoltorio"* para proporcionarnos acceso a metodos como `toUpperCase()`. A esto se llama "Object Wrappers" o envolvedores de objetos.
+
+```js
+let texto = "Holis";
+// En que momento el string tiene metodos? Esto es por los object wrappers!
+console.log(texto.toUpperCase()); // HOLIS
+```
+
+2. **Funciones**: En JavaScript las funciones son objetos de tipo `Function`, lo que permite asignarlas a variables o pasarlas como argumentos.
+
+3. **Arrays**: Los arrays tambien son objetos en JavaScript, aunque tienne un comportamiento especial, ya que es un objeto que organiza sus datos mediante indices numerados
+
+4. **Objetos globales**: Todo el entorno de ejecucion esta basado en objetos globales. `window` en el navegador o `global` en Node.js.
+
+---
+
 ## JavaScript IV / Introduccion a arrays y objetos. Metodos de strings y arrays
 ```js
 /*=========================================

@@ -3,6 +3,16 @@
 ## Primer parcial 21 de mayo
 ## Recuperatorio 28 de mayo (asincronico)
 
+
+---
+
+
+## Prox clase 11/05
+- Rematar JavaScript V
+- Arrancar JavaScript VI
+
+---
+
 ## Frontend
 - HTML I hasta forms
 
@@ -22,15 +32,6 @@
 
 - CSS IV 
     - Media queries y live coding
-
-
----
-
-
-## Prox clase 07/05
-- JavaScript V
-- Continuaremos con el live coding del jueves pasado
-
 
 ---
 

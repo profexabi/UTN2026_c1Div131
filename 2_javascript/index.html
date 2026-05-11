@@ -16,13 +16,44 @@
             background-color: var(--bg-claro);
             color: white;
         }
+
+        #padre {
+            border: 2px solid;
+            width: 500px;
+            padding: 25px;
+            border-radius: 5px;
+        }
+
+        #hijo {
+            padding: 15px;
+            background-color: springgreen;
+            border: 2px solid;
+            border-radius: 5px;
+        }
     </style>
     <!-- JavaScript va antes del </body> 
     O en el head con el atributo defer-->
     <script src="js/main.js" defer></script>
 </head>
 <body>
-    <h1>JavaScript Div 131</h1>
+    <h1 id="titulo">JavaScript Div 131</h1>
+
+    <p class="mensaje">Primer parrafo</p>
+    <p class="mensaje">Segundo parrafo</p>
+
+    <hr>
+    <h3>Probando eventos!</h3>
+    <input type="text" name="texto" id="input_texto">
+    <button id="boton">Soy un boton!</button>
+    <button id="btn-tabla">Mostrar tabla</button>
+
+    <hr>
+    <div id="contenedorTabla"></div>
+
+
+    <div id="padre">
+        <button id="hijo">Boton hijo</button>
+    </div>
 
 </body>
 </html>

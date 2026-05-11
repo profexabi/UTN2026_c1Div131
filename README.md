@@ -7,9 +7,9 @@
 ---
 
 
-## Prox clase 11/05
-- Rematar JavaScript V
-- Arrancar JavaScript VI
+## Prox clase 14/05
+- Practicar con localStorage almacenando arrays de objetos
+- Renderizaremos ese contenido en el documento
 
 ---
 

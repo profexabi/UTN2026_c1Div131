@@ -7,12 +7,6 @@
 ---
 
 
-## Prox clase 14/05
-- Practicar con localStorage almacenando arrays de objetos
-- Renderizaremos ese contenido en el documento
-
----
-
 ## Frontend
 - HTML I hasta forms
 
@@ -50,6 +44,8 @@
 - [Plantilla simple para practicar flexbox](https://onlinegdb.com/Zyi4V7ajp)
 - [CSS Gradient para crear degradados personalizados](https://cssgradient.io/)
 
+- [API Rest publica para practicar peticiones](https://jsonplaceholder.typicode.com/)
+
 ---
 
 ## Backend
@@ -58,6 +54,11 @@
 ---
 
 ## Recursos Extra
+
+### [Entendiendo las SPAs / Ver solamente la parte 0](https://fullstackopen.com/en/part0)
+
+### [Sintaxis basica del lenguaje Markdown](https://www.markdownguide.org/basic-syntax/)
+### [Documento online de bash](https://dillinger.io/)
 
 ### Introduccion a Bash
 - [Tutorial Hostinger](https://www.hostinger.com/es/tutoriales/bash-script-linux)

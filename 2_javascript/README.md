@@ -3,14 +3,6 @@
 
 ## JavaScript VIII / JSON, asincronia, promesas y fetch, async/await y try/catch
 
-Recordemos, las APIs web son herramientas y funciones que nos provee el navegador, que es el entorno de ejecucion de JavaScript (navegador y Node.js).
-
-Estas funciones extienden las funcionalidades de JavaScript como lenguaje y nos permiten hacer un monton de cosas, ver `JavaScript VII`
-
-Estas funciones nos las brinda el navegador a través de los objetos globales.
-
-#### [API Rest publica para practicar peticiones](https://jsonplaceholder.typicode.com/)
-*Esta es la parte practica, la prox clase vamos a entender bien como funciona la arquitectura cliente-servidor y el protocolo HTTP*
 ```js
 /*========================
     Asincronia en JS
@@ -18,7 +10,7 @@ Estas funciones nos las brinda el navegador a través de los objetos globales.
 
 La asincronia es la capacidad de un programa de ejecutar tareas que toman tiempo (como acceder a una API o esperar un temporizador) sin bloquear la ejecucion del resto del codigo.
 
-En JavaScript, esto es especialmente importante poorque es un lenguaje single-threaded (de un solo hilo), lo que significa que solo puede ejecutar una tarea a la vez. Por eso, para evitar que el hilo principal se bloquee, se introducen mecanismos asincronicos que permiten "delegar" operaciones que tomaran tiempo y continuar ejecutando el resto del codigo mientras esas tareas se completan.
+En JavaScript, esto es especialmente importante porque es un lenguaje single-threaded (de un solo hilo), lo que significa que solo puede ejecutar una tarea a la vez. Por eso, para evitar que el hilo principal se bloquee, se introducen mecanismos asincronicos que permiten "delegar" operaciones que tomaran tiempo y continuar ejecutando el resto del codigo mientras esas tareas se completan.
 
 
 ============================================
@@ -36,9 +28,9 @@ Funcion que se pasa como argumentoo para ejecutarse despues de completar una ope
 /////////////////
 // 2. Promises
 Objeto que representa un valor que puede estar disponible ahora, mas adelante o nunca. Sus estados son
-    - pending
-    - fulfilled
-    - rejected
+    - pending (pendiente)
+    - fulfilled (completada)
+    - rejected (rechazada)
 
 fetch() no es una promesa, es una Web API que retorna una promesa
 
@@ -231,7 +223,7 @@ La palabra clave await PAUSA la ejecucion de la funcion async hasta que una prom
 // Que pasa internamente con await?
 
     1. Evalua la expresion que devuelve una promesa
-    2. Suspende la ejecucion de la funcioon hasta que la promesa se resuelva o se rechaza
+    2. Suspende la ejecucion de la funcion hasta que la promesa se resuelva o se rechaza
     3. Si se resuelve, se continua con el valor
     4. Si se rechaza, lanza un error que puede ser atrapado por try...catch
 
@@ -310,7 +302,92 @@ Ojo! Opcionalmente tambien podemos añadir un bloque finally
         // Codigo que se ejecuta siempre (con o sin error)
     }
 */
+
+// Ejemplo basico de division entre 0 -> error matematico
+try {
+    const resultado = 10 / 0; // ejemplo aleatorio para generar un error mas abajo
+    console.log(resultado); // Este error matematico JavaScript lo interpreta como Infinity
+    throw new Error ("No se puede dividir por 0!"); // Aca es el error que creamos
+
+} catch (e) {
+    console.log("Ocurrio un error", e.message);
+
+} finally {
+    console.log("Esto se va a ejecutar siempre");
+}
+
+// Infinity
+// Ocurrio un error No se puede dividir por 0!
+// Esto se va a ejecutar siempre
+
+
+/*================================
+    Que errores puede capturar?
+==================================
+
+try...catch captura errores en tiempo de ejecucion (runtime) como
+
+    - Acceso a variables no definidas
+    - Llamadas a funciones inexistentes
+    - Errores lanzados con throw
+    - Problemas en funciones como JSON.parse()
+    - NO captura errores de sintaxis, porque estos evitan que el codigo siquiera se ejecute
+
+
+==================================
+    Como funciona internamente?
+==================================
+
+    1. El bloque try se ejecuta normalmente
+    2. Si ocurre un error dentro del try se detiene inmediatamente la ejecucion y pasa al bloque catch
+    3. El objeto de error (por convencion llamamos error o e) contiene informacion como
+
+        - .name: tipo de error (TypeError, ReferenceError, etc)
+        - .message: mensaje descriptivo
+        - .stack: pila de llamadas
+
+    4. El bloque finally si existe, se ejecuta siempre ocurra o no un error
+
+
+
+========================================
+    throw: lanzar manualmente errores
+========================================
+
+Podemos lanzar nustros propios errores con throw, util para validaciones o control de flujo
+
+
+
+============================================
+    por que no usar try...catch en exceso?
+============================================
+
+    - Puede ocultar errores reales si no se maneja correctamente
+    - Tiene costo de rendimiento, especialmente en bucles
+    - Es mejor usarlo donde hay riesgo real de error (I/O, parsing, red, etc)
+
+
+
+================================
+    Buenas practicas
+================================
+
+    - No atrapemos errores que no podemos manejar
+    - Usemos try...catch solo donde esperemos errores (parsear datos o hacer llamadas a APIs)
+    - Usemos finally para cerrar recursos, limpiar o terminar tareas (conexiones, indicadores de carga, etc)
+    - Siempre proporcionemos informacion util en el error
+*/
 ```
+
+Recordemos, las APIs web son herramientas y funciones que nos provee el navegador, que es el entorno de ejecucion de JavaScript (navegador y Node.js).
+
+Estas funciones extienden las funcionalidades de JavaScript como lenguaje y nos permiten hacer un monton de cosas, ver `JavaScript VII`
+
+Estas funciones nos las brinda el navegador a través de los objetos globales.
+
+#### [API Rest publica para practicar peticiones](https://jsonplaceholder.typicode.com/)
+*Esta es la parte practica, la prox clase vamos a entender bien como funciona la arquitectura cliente-servidor y el protocolo HTTP*
+
 
 ---
 
@@ -420,6 +497,81 @@ window.document;            // API del DOM
 #### En resumen
 - JavaScript puro es simple
 - El navegador le proporciona "superpoderes" con la Web APIs que se exponen a partir de los objetos globales
+- Estas APIs permiten que JavaScript haga cosas reales: hablar con servidores, manipular la pagina, guardar datos, usar la camara, etc
+
+
+### Que tipos de Web APIs hay?
+> Las Web APIs son herramientas que el navegador le da a JavaScript para interactuar con el entorno: HTML, red, audio, video, dispositivos, almacenamiento, etc
+
+#### APIs del DOM (Document Object Model)
+Permiten acceder y modificar el HTML y CSS de la pagina
+
+- `document.querySelector()`
+- `element.addEventListener()`
+
+*Nos permiten la manipulacion de elementos, eventos, clases, estilos, etc*
+
+---
+
+#### APIs de red
+Permiten comunicarte con servidores o cargar recursos
+
+- `fetch()`
+- `WebSocket`
+
+*Nos permite hacer peticiones HTTP, chats, notificaciones en tiempo real*
+
+---
+
+#### APIs de almacenamiento
+Guardar informacion en el navegador
+
+- `localStorage`
+- `sessionStorage`
+- `IndexedDB`
+- `document.cookie`
+
+*Nos permiten guardar preferencias, datos de sesion, apps sin conexion*
+
+---
+
+#### Timers
+Permiten ejecutar funciones luego de un cierto tiempo
+
+- `setTimeout()`
+- `setInterval()`
+
+*Nos permiten hacer retrasos, animaciones, etc*
+
+---
+
+#### APIs de dispositivos y multimedia
+Interaccion con hardware o medios
+
+- `navigator.geolocation`
+- `MediaDevices.getUserMedia()`
+- `Notificacion`
+- `Battery API`, `Clipboard API`
+
+*Nos permiten crear apps moviles, usar la camara, permisos, grabaciones, notificaciones*
+
+---
+
+#### APIs de Interfaz grafica
+Controlan animaciones, graficos y visualizacion
+
+- `Canvas API`
+- `WebGL`
+- `FullScreen API`
+- `Screen Orientation API`
+
+*Nos permiten crear juegos, visualizaciones, graficos dinamicos, etc*
+
+---
+
+#### En resumen
+- JavaScript puro es simple
+- El navegador le da superpoderes a JavaScript a traves de las web apis dentro de los objetos globales
 - Estas APIs permiten que JavaScript haga cosas reales: hablar con servidores, manipular la pagina, guardar datos, usar la camara, etc
 
 

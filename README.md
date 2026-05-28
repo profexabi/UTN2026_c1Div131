@@ -1,7 +1,17 @@
 # UTN2026_c1Div131
 
 ## Primer parcial 21 de mayo
-## Recuperatorio 28 de mayo (asincronico)
+## Recuperatorio 4 de junio (asincronico)
+
+## Prox clase
+- Terminar con Node.js 
+    - importacion y exportacion de modulos (ej basico)
+    - modulo nativo http
+
+- Instalar express
+    - Compararemos el servidor con Node.js y con Express.js
+
+- Arrancar el TP Integrador
 
 
 ---
@@ -49,11 +59,13 @@
 ---
 
 ## Backend
+### [Playlist de Cliente-Servidor, HTTP y JSON de TodoCode](https://www.youtube.com/watch?v=lC6JOQLIgp0&list=PLQxX2eiEaqbxx6Ds5bd1F6LZJo7_OnZhV)
 ### [Clase 2hs Protocolo HTTP y lenguaje HTML](https://www.youtube.com/watch?v=l6oF_RpBf64)
 
 ---
 
 ## Recursos Extra
+### [Columna de Emi Garzon sobre tecnologia](https://www.youtube.com/watch?v=Z3kXgVFaTVM)
 
 ### [Entendiendo las SPAs / Ver solamente la parte 0](https://fullstackopen.com/en/part0)
 

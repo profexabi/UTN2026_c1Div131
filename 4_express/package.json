@@ -1,0 +1,17 @@
+{
+  "name": "4_express",
+  "version": "1.0.0",
+  "description": "`Express.js` es un framework que funciona sobre Node.js, esta construido sobre el *modulo nativo `http` de Node.js*. Esta diseñado para facilitar la creacion de servidores web y simplifica el maneejo de rutas, peticiones HTTP, respuestas HTTP y otras tareas comunes en el desarrollo de aplicaciones backend.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1",
+    "nodemon": "^3.1.14"
+  }
+}

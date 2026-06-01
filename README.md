@@ -4,14 +4,13 @@
 ## Recuperatorio 4 de junio (asincronico)
 
 ## Prox clase
-- Terminar con Node.js 
-    - importacion y exportacion de modulos (ej basico)
-    - modulo nativo http
+- Explicar archivos ocultos .env (variables de entorno)y paquete dotenv
 
-- Instalar express
-    - Compararemos el servidor con Node.js y con Express.js
+- Crearemos el sistema de archivos de nuestro proyecto Express
 
-- Arrancar el TP Integrador
+- Hacer la conexion a la BBDD
+
+- Primeros endpoints GET y GET by ID
 
 
 ---

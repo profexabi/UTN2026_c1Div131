@@ -136,7 +136,22 @@ El navegador nos sirve para crear paginas web interactivas y `Node.js` nos permi
 
 Ahora con  no solo vamos a trabajar con la logica de presentacion (la interfaz de la pagina web) sino con la gestion de datos, archivos, bases de datos y demas.
 
+
 ---
+
+### Importacion de modulos y rutas
+Entender la diferencia entre la ruta `saludos.js` y `./saludos.js`
+
+La diferencia fundamental radica en cómo el sistema resuelve la ubicación del archivo:
+
+*   **`saludos.js`**: Se interpreta como un **módulo nombrado** o paquete instalado (como los que están en `node_modules`). El entorno de ejecución buscará una biblioteca con ese nombre específico o un archivo `saludos.js` en el directorio raíz de las dependencias, pero no en la carpeta actual del proyecto.
+*   **`./saludos.js`**: Se interpreta como una **ruta relativa explícita**. El prefijo `./` indica al sistema que busque el archivo `saludos.js` en el **mismo directorio** donde se encuentra el archivo actual que está realizando la importación.
+
+En resumen, usar `./` asegura que se cargue el archivo local del proyecto, mientras que omitirlo puede llevar a cargar un módulo externo o generar un error si no existe una dependencia instalada con ese nombre.
+
+
+---
+
 
 ### [`npm`](https://www.npmjs.com/)
 Un punto clave en el desarrollo con `Node.js` es [`npm`](https://www.npmjs.com/).

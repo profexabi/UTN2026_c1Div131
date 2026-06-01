@@ -53,3 +53,10 @@ const path = require("path");
 const ruta = path.join(__dirname, "archivos", "texto.txt"); // Esto va a crear la ruta ABSOLUTA de mi sistema operativo
 
 console.log(ruta); // /home/xabier/Escritorio/Docencia/2026/UTN2026_c1Div131/3_nodejs/archivos/texto.txt
+
+
+// Recordemos la diferencia de rutas con modulos en nuestro 3_nodejs/README.md
+// Vamos a importar el modulo de saludos.js
+const saludar = require("./saludos.js"); // Escribimos la ruta explicita de este modulo
+
+console.log(saludar("Gabriel")); // Hola, Gabriel

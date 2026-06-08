@@ -8,9 +8,9 @@ Lo cual quiere decir que no tendremos que instalarlos, por ejemplo con `npm`.
 
 El orden siempre va a ser
 
-1. Instalar un modulo (en caso de que no este instalado)
-2. Importarlo en el archivo que lo vayamos a usar
-3. Usarlo
+    1. Instalar un modulo (en caso de que no este instalado)
+    2. Importarlo en el archivo que lo vayamos a usar
+    3. Usarlo
 */
 
 // fs (File System): Modulo para interactuar con el sistema de archivos. Podremos leer, escribir, actualizar y borrar archivos de forma sencilla

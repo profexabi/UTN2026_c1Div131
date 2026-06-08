@@ -1,16 +1,13 @@
 # UTN2026_c1Div131
 
 ## Primer parcial 21 de mayo
-## Recuperatorio 4 de junio (asincronico)
+## Recuperatorio 8 de junio (asincronico)
 
 ## Prox clase
-- Explicar archivos ocultos .env (variables de entorno)y paquete dotenv
-
-- Crearemos el sistema de archivos de nuestro proyecto Express
-
-- Hacer la conexion a la BBDD
-
-- Primeros endpoints GET y GET by ID
+- Repaso general
+- Hacer vista para GET by id
+- Endpoint POST + Vista
+- Endpoint DELETE + Vista
 
 
 ---
@@ -59,6 +56,7 @@
 
 ## Backend
 ### [Playlist de Cliente-Servidor, HTTP y JSON de TodoCode](https://www.youtube.com/watch?v=lC6JOQLIgp0&list=PLQxX2eiEaqbxx6Ds5bd1F6LZJo7_OnZhV)
+
 ### [Clase 2hs Protocolo HTTP y lenguaje HTML](https://www.youtube.com/watch?v=l6oF_RpBf64)
 
 ---

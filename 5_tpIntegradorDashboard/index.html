@@ -77,9 +77,13 @@
         async function obtenerProductos() {
             try {
 
-                const response = await fetch(url);
+                // Gracias a la API fetch, realizo una peticion HTTP GET a mi propia api rest, al endpoint GET /api/products
+                const response = await fetch("http://localhost:3000/api/products/");
+
+                // Una vez que recibo todo el choclo JSON, lo parseo con response.json()
                 const data = await response.json();
                 
+                // Extraigo los productos que vienen en la clave payload
                 const productos = data.payload;
                 console.log(productos);
                 

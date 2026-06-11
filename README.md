@@ -4,10 +4,9 @@
 ## Recuperatorio 8 de junio (asincronico)
 
 ## Prox clase
-- Repaso general
-- Hacer vista para GET by id
-- Endpoint POST + Vista
-- Endpoint DELETE + Vista
+- Endpoint put + Vista
+- Optimizaciones de endpoints
+- Modularizacion patron MVC
 
 
 ---

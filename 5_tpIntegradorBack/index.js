@@ -27,7 +27,7 @@ app.use((req, res, next) => {
     next(); // next me permite pasar al siguiente middleware o dar paso a la response (res)
 });
 
-
+app.use(express.json()); // middleware para parsear el JSON de las peticiones POST y PUT
 
 
 
@@ -71,7 +71,43 @@ app.get("/api/products/:id", async (req, res) => {
         payload: rows
     })
 
+});
+
+
+// POST product
+app.post("/api/products", async (req, res) => {
+
+    // Gracias al middleware app.use(express.json()) -> Recibimos un objeto JS ya parseado
+    console.log(req.body);
+
+    // Extraemos los valores que vienen en el CUERPO (body) de la peticion http (HTTP Request)
+    const { name, image, category, price } = req.body;
+
+    // Los placeholders "?" nos permiten realizar consultas SQL mas seguras (evitan inyeccion SQL)
+    const sql = "INSERT INTO products (name, image, category, price) VALUES (?, ?, ?, ?)";
+
+    await connection.query(sql, [name, image, category, price]);
+
+    res.status(200).json({
+        message: "Producto creado con exito"
+    });
+});
+
+
+// DELETE product
+app.delete("/api/products/:id", async (req, res) => {
+    const id = req.params.id;
+
+    const sql = "DELETE FROM products WHERE id = ?";
+
+    await connection.query(sql, [id]);
+
+    res.status(200).json({
+        message: `Producto con id ${id} eliminado correctamente`
+    });
 })
+
+
 
 
 app.listen(PORT, () => {

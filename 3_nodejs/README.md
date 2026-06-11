@@ -48,6 +48,18 @@ Los métodos más utilizados en el desarrollo web moderno y en arquitecturas RES
 
 ---
 
+
+## Que es un CRUD?
+Es una aplicacion que realiza operaciones de creacion, lectura, actualizacion y eliminacion de registros en una base de datos
+    - Create (POST)
+    - Read (GET)
+    - Update (PUT)
+    - Delete (DELETE)
+
+
+---
+
+
 ## Codigos de estado HTTP
 Los códigos de estado HTTP son respuestas numéricas del servidor que indican el resultado de una solicitud HTTP, clasificadas en cinco categorías según su primer dígito: **1xx** (informativas), **2xx** (éxito), **3xx** (redirecciones), **4xx** (errores del cliente) y **5xx** (errores del servidor).
 

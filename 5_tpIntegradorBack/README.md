@@ -1,5 +1,15 @@
 # TP Integrador 2026 c1 Div131 / Backend
 
+## Repaso conceptual clave
+
+### [Playlist de Cliente-Servidor, HTTP y JSON de TodoCode](https://www.youtube.com/watch?v=lC6JOQLIgp0&list=PLQxX2eiEaqbxx6Ds5bd1F6LZJo7_OnZhV)
+
+### [Clase 2hs Protocolo HTTP y lenguaje HTML](https://www.youtube.com/watch?v=l6oF_RpBf64)
+
+
+---
+
+
 # ////////////////////////////////////////////////////
 # CRUD version I: *MVC con EJS*
 # ////////////////////////////////////////////////////
@@ -292,7 +302,7 @@ TypeError: NetworkError when attempting to fetch resource.
 
 **CORS (Cross-Origin Resource Sharing)** es un mecanismo de seguridad implementado por los navegadores para restringir las solicitudes HTTP que se realizan desde un dominio diferente al del servidor de destino. Su propósito principal es prevenir ataques maliciosos, evitando que un sitio web malicioso acceda a recursos protegidos (como cookies o tokens de autenticación) de otro sitio sin autorización.
 
-Cuando intentas consumir tu API REST desde una aplicación web alojada en un dominio distinto (por ejemplo, tu frontend en `http://localhost:8080` y tu API en `http://localhost:3000`), el navegador bloquea la solicitud si el servidor de la API no incluye las cabeceras adecuadas de CORS. Esto ocurre porque el **origen** (protocolo, dominio y puerto) de la aplicación cliente no coincide con el del servidor de la API, activando la **política de mismo origen**.
+Cuando intentas consumir tu API REST desde una aplicación web alojada en un dominio distinto (por ejemplo, tu frontend en `http://localhost:3000` y tu API en `http://localhost:8080`), el navegador bloquea la solicitud si el servidor de la API no incluye las cabeceras adecuadas de CORS. Esto ocurre porque el **origen** (protocolo, dominio y puerto) de la aplicación cliente no coincide con el del servidor de la API, activando la **política de mismo origen**.
 
 #### ¿Por qué no permite consumir tu API REST?
 - El navegador bloquea la solicitud si el servidor no responde con las cabeceras de CORS necesarias.
@@ -440,4 +450,492 @@ app.get("/api/products/:id", async (req, res) => {
 
 ---
 
-Listo! Ahora faltan los endpoints post, put y delete. 
+
+
+### 3.4 Creamos el endpoint **POST product**
+```js
+app.post("/api/products", async (req, res) => {
+    let { category, image, name, price } = req.body;
+    
+    let sql = "INSERT INTO products (name, image, category, price) VALUES (?, ?, ?, ?)";
+
+    await connection.query(sql, [name, image, category, price]);
+
+    res.status(200).json({
+        message: "Producto creado con exito"
+    });
+});
+```
+
+---
+
+#### Consumimos el endpoint POST desde el front
+```js
+altaProducts_form.addEventListener("submit", async(event) => {
+
+    // Evitamos el envio por defecto del formulario
+    event.preventDefault(); 
+
+    // Obtenemos la data del formulario
+    let formData = new FormData(event.target);
+
+    console.log(formData); 
+    //FormData(4) { category → "food", image → "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimag.bonviveur.com%2Fempanadas-argentinas-de-carne-foto-cerca.jpg&f=1&nofb=1&ipt=69ae3503efb8b142aabaef1b982c83d57e2633d9046cecb6bb78551d7a782376", name → "Empanada", price → "100" }
+
+    // Transformamos esta data del formulario en un objeto JavaScript
+    let data = Object.fromEntries(formData.entries());
+
+
+    try {
+        let response = await fetch("http://localhost:3000/api/products", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                // Si necesitaramos tambien podriamos pasar otros parametros adicionales
+            },
+            body: JSON.stringify(data)
+        });
+
+        if(response.ok) {
+            console.log(response);
+
+            let result = await response.json();
+            console.log(result.message);
+            
+            alert(result.message);
+        }
+
+    } catch (error) {
+        console.error("Error al enviar los datos ", error);
+        alert("Error al procesar la solicitud");
+    }
+});
+```
+
+
+---
+
+
+### 3.5 Creamos el endpoint **PUT product**
+```js
+app.put("/api/products", async (req, res) => {
+    let { id, name, image, price, category } = req.body;
+
+    let sql = `UPDATE products SET name = ?, image = ?, price = ?, category = ? WHERE id = ?`;
+
+    await connection.query(sql, [name, image, price, category, id]);
+
+    return res.status(200).json({
+        message: "Producto actualizado correctamente"
+    });
+});
+```
+
+#### Consumimos el endpoint PUT desde el front
+```js
+getProduct_form.addEventListener("submit", async (event) => {
+
+    event.preventDefault(); // Prevenimos el envio por defecto del formulario
+
+    let formData = new FormData(event.target); // Creamos un nuevo objeto FormData a partir de los datos del formulario
+    console.log(formData); // FormData { idProd → "1" }
+
+    let data = Object.fromEntries(formData.entries()); // Transformamos a objetos JS los valores de FormData
+    console.log(data); // Object { idProd: "2" }
+
+    let idProd = data.idProd;
+
+    let response = await fetch(`http://localhost:3000/api/products/${idProd}"`);
+
+    let datos = await response.json();
+
+    let producto = datos.payload[0]; // Tenemos el primer resultado del producto
+
+    mostrarProducto(producto)
+});
+
+
+function mostrarProducto(producto) {
+    let htmlProducto = `
+        <li class="li-listados">
+            <img src="${producto.image}" alt="${producto.name}" class="img-listados">
+            <p>Id: ${producto.id} / Nombre: ${producto.name} / <strong>Precio: $${producto.price}</strong></p>
+        </li>
+        <li>
+            <input type="button" id="updateProduct_button" value="Actualizar producto">
+        </li>
+    `;
+
+    getId_list.innerHTML = htmlProducto;
+
+
+    let updateProduct_button = document.getElementById("updateProduct_button");
+
+    updateProduct_button.addEventListener("click", (event) => {
+        formularioPutProducto(event, producto);
+    });
+}
+
+
+function formularioPutProducto(event, producto) {
+    event.stopPropagation();
+    console.log(producto); // El producto llega correctamente
+
+    let updateProduct = `
+        <div id="updateProducts-container" class="crudForm-container">
+
+            <h2>Actualizar producto</h2>
+
+            <form id="updateProducts-form">
+
+                <label for="idProd">Id</label>
+                <input type="number" name="id" id="idProd" value="${producto.id}" readonly>
+
+
+                <label for="categoryProd">Categoria</label>
+                <select name="category" id="categoryProd" required>
+                    <option value="food">food</option>
+                    <option value="drink">drink</option>
+                </select>
+
+
+                <label for="imageProd">Imagen</label>
+                <input type="text" name="image" id="imageProd" value="${producto.image}" required>
+
+
+                <label for="nameProd">Nombre</label>
+                <input type="text" name="name" id="nameProd" value="${producto.name}" required>
+
+
+                <label for="priceProd">Precio</label>
+                <input type="number" name="price" id="priceProd" value="${producto.price}"  required>
+
+
+                <input type="submit" value="Actualizar producto">
+            </form>
+        </div>
+    `;
+
+    updateFormContainer.innerHTML = updateProduct;
+
+    let updateProducts_form = document.getElementById("updateProducts-form");
+
+    updateProducts_form.addEventListener("submit", (event) => {
+        actualizarProducto(event);
+    });
+}
+
+
+// Enviamos los datos del formulario al servidor
+async function actualizarProducto(event) {
+    event.preventDefault();
+
+    let formData = new FormData(event.target);
+
+    let data = Object.fromEntries(formData.entries());
+
+    try {
+        let response = await fetch("http://localhost:3000/api/products", {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data)
+        });
+
+        if(response.ok) {
+            console.log(response);
+            let result = await response.json();
+
+            console.log(result.message);
+            alert(result.message);
+
+            // Vaciamos si existiera la lista y el formulario de actualizacion del producto
+            getId_list.innerHTML = "";
+            updateFormContainer.innerHTML = "";
+
+        } else {
+            let error = await response.json();
+            console.error("Error: ", error.message);
+        }
+
+    } catch (error) {
+        console.error("Error al enviar los datos: ", error.message);
+        alert("Error al procesar la solicitud");
+    }
+}
+```
+
+---
+
+
+### 3.6 Creamos el endpoint **DELETE product**
+```js
+app.delete("/api/products/:id", async (req, res) => {
+    let { id } = req.params;
+
+    await connection.query("DELETE FROM products WHERE id = ?", [id]);
+
+    res.status(200).json({
+        message: `Product con id ${id} eliminado correctamente`
+    });
+});
+```
+
+---
+
+#### Consumimos el endpoint DELETE desde el front
+```js
+getProduct_form.addEventListener("submit", async (event) => {
+
+    event.preventDefault(); // Prevenimos el envio por defecto del formulario
+
+    try {
+        let formData = new FormData(event.target); // Creamos un nuevo objeto FormData a partir de los datos del formulario
+
+        let data = Object.fromEntries(formData.entries()); // Transformamos a objetos JS los valores de FormData
+        let idProd = data.idProd;
+
+        let response = await fetch(`http://localhost:3000/api/products/${idProd}"`);
+        let datos = await response.json();
+        let producto = datos.payload[0]; // Tenemos el primer resultado del producto
+
+        let htmlProducto = `
+        <li class="li-listados">
+            <img src="${producto.image}" alt="${producto.name}" class="img-listados">
+            <p>Id: ${producto.id} / Nombre: ${producto.name} / <strong>Precio: $${producto.price}</strong></p>
+        </li>
+            <li>
+            <input type="button" id="deleteProduct_button" value="Eliminar producto">
+        </li>
+
+        `;
+
+        getId_list.innerHTML = htmlProducto;
+
+        // Vamos a asignarle un evento click a nuestro boton "Eliminar producto"
+        let deleteProduct_button = document.getElementById("deleteProduct_button");
+
+        deleteProduct_button.addEventListener("click", event => {
+            
+            event.stopPropagation();
+
+            let confirmacion = confirm("Querés eliminar este producto?");
+
+            if(!confirmacion) {
+                alert("Eliminacion cancelada");
+
+            } else {
+                eliminarProducto(producto.id);
+            }
+        });
+        
+
+    } catch (error) { // Continuando error que capturamos en la Optimizacion 1
+        console.log(error);
+        console.error("Error al obtener el producto: ", error.message);
+    }
+
+});
+
+// Funcion para eliminar un producto
+async function eliminarProducto(id) {
+    try {
+        let response = await fetch(`http://localhost:3000/api/products/${id}`, {
+            method: "DELETE"
+        });
+
+        let result = await response.json();
+
+        if(response.ok) {
+            alert(result.message);
+
+            // Vaciamos la lista
+            getId_list.innerHTML = "";
+
+        } else {
+            console.error("Error:", result.message);
+            alert("No se pudo eliminar el producto");
+        }
+
+    } catch (error) {
+        console.error("Error en la solicitud DELETE: ", error);
+        alert("Ocurrio un error al eliminar un producto");
+    }
+}
+```
+
+
+---
+
+
+## 4. Optimizamos endpoints y vistas
+
+### 4.1 Optimizando endpoint `GET all products`
+```js
+// GET all products
+app.get("/api/products", async (req, res) => {
+    try {
+
+        ///////////////////
+        // Optimizacion 1: evitamos traer columnas innecesarias en la consulta SQL (mas eficiente en memoria y red)
+        const sql = "SELECT id, name, price, image FROM productssss";
+
+        const [rows] = await connection.query(sql); // En rows guardamos los resultados de nuestra sentencia SQL
+        // console.log(rows);
+        // el objeto res nos permitira devolver un codigo de estado y un tipo de respuesta
+
+        ///////////////////
+        // Optimizacion 2: Respuesta 404 si la BBDD no devuelve productos
+        if (rows.length === 0) {
+            return res.status(404).json({
+                message: "No se encontraron productos"
+            })
+        }
+
+        res.status(200).json({
+
+            ///////////////////
+            // Optimizacion 3: Opcional, podemos devolver la cantidad de productos
+            total: rows.length,
+            payload: rows
+        });
+
+    } catch (error) {
+        console.log("Error obteniendo productos: ", error.message);
+
+        ///////////////////
+        // Optimizacion 4: Si fallo la conexion a la BBDD, tardo demasiado, la tabla no existe o hay error de sintaxis
+        res.status(500).json({
+            message: "Error interno al obtener productos"
+        })
+    }
+});
+```
+
+### 4.2 Optimizando vista `GET all products`
+```js
+const contenedorProductos = document.getElementById("contenedor-productos");
+
+async function mostrarProductos () {
+    try {
+        const response = await fetch("http://localhost:3000/api/products");
+        const datos = await response.json();
+
+        ////////////////////
+        // Optimizacion 1: Verificamos que la respuesta HTTP fue exitosa, caso contrario, crearmos un error
+        if(!response.ok) {
+            throw new Error(`Error: ${response.status} ${response.message}`);
+        }
+
+        const productos = datos.payload;
+        console.log(productos);
+
+        renderizarProductos(productos);
+
+
+    } catch (error) {
+        console.error(`Error al cargar productos: ${error}`);
+
+        ////////////////////
+        // Optimizacion 2: Mostramos el error en el DOM
+        contenedorProductos.innerHTML = `
+            <p class="mensaje-error">${error}</p>
+        `;
+    }
+}
+
+function renderizarProductos(array) {
+    let htmlProductos = "";
+
+    array.forEach(producto => {
+        htmlProductos += `
+        <div class="card-producto">
+            <img src="${producto.image}" alt="${producto.name}">
+            <h4>${producto.name}</h4>
+            <p>Id: ${producto.id}</p>
+            <p>$${producto.price}</p>
+        </div>
+        `;
+
+        contenedorProductos.innerHTML = htmlProductos;
+    })
+}
+
+mostrarProductos();
+```
+
+
+---
+
+
+### 4.3 Optimizando endpoint `GET by id`
+```js
+// Middleware de ruta para filtrar ids no validos
+const validateId = (req, res, next) => {
+    const { id } = req.params;
+
+    // REGEX para aceptar solo digitos enteros positivos (filtrando "42abc", "0" o "-1", espacios)
+    if(!/^\d+$/.test(id)) {
+        return res.status(400).json({
+            error: "El ID debe ser un numero entero positivo"
+        });
+    }
+
+    // Convertimos el string a numero entero integer en base 10 decimal, y lo adjuntamos al objeto req
+    const parsedId = parseInt(id, 10);
+
+    if(parsedId === 0) {
+        return res.status(400).json({
+            error: "El id debe ser mayor a 0"
+        });
+    }
+
+    req.id = parsedId;
+
+    next(); // Pasamos al siguiente middleware o a la respuesta
+}
+
+
+// GET product by id
+app.get("/api/products/:id", validateId, async (req, res) => {
+try {
+    /*//////////////////////
+    // Optimizacion 1:  Ahora el id ya lo obtiene el middleware validateId
+    // Gracias al destructuring, agarramos el valor id de req.params
+    const { id } = req.params;
+    // const id = req.params.id -> misma solucion
+    */
+
+    //////////////////////
+    // Optimizacion 2: Seleccionamos los campos necesarios
+    // Este interrogante es el placeholder "?" que nos permite escribir sentencias SQL seguras (preveniendo ataques de inyeccion SQL)
+    const sql = "SELECT id, name, price, image FROM products where products.id = ?";
+    const [rows] = await connection.query(sql, [req.id]);
+    // console.log(rows);
+
+    //////////////////////
+    // Optimizacion 3: Si no encontramos un producto con ese id, devolvemos 404
+    if(rows.length === 0) {
+        return res.status(404).json({
+            error: `No se encontro producto con id ${req.id}`
+        });
+    }
+
+    res.status(200).json({
+        payload: rows[0]
+    });
+
+} catch (error) {
+    console.log("Error obteniendo producto con id: ", error.message);
+
+    ///////////////////
+    // Optimizacion 4: Le devolvemos un status 500 al cliente
+    res.status(500).json({
+        error: "Error interno al obtener un producto con id"
+    })
+}
+```
+
+
+---

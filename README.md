@@ -3,11 +3,19 @@
 ## Primer parcial 21 de mayo
 ## Recuperatorio 8 de junio (asincronico)
 
-## Prox clase
-- Endpoint put + Vista
-- Optimizaciones de endpoints
+## *Prox clase lunes 22/06*
+- **Concluido repaso el jueves 18/06**
+- Endpoint put + Vista (copia y pega)
+- Optimizaciones de endpoints (copia y pega)
 - Modularizacion patron MVC
 
+### Tareas
+1. Armen su propia BBDD
+2. Para antes del lunes repasen los videos de protocolo HTTP, practiquen lo de hoy  y traigan todas las dudas, asi ya pasamos 
+    - modularizacion el lunes 22
+    - EJS el jueves y nos quedan 2 clases mas para hacer mas cosas, login
+4. Clase lunes 29
+5. Clase jueves 2
 
 ---
 

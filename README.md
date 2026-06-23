@@ -5,9 +5,32 @@
 
 ## *Prox clase lunes 22/06*
 - **Concluido repaso el jueves 18/06**
-- Endpoint put + Vista (copia y pega)
-- Optimizaciones de endpoints (copia y pega)
-- Modularizacion patron MVC
+- **DONE** Optimizaciones de endpoints
+
+## Prox clase jueves 25/06
+- 1a mitad / Modularizacion patron MVC
+- 2a mitad / ticket con jsPDF + POST ventas
+
+## Prox clase lunes 29/06
+- Setup para servir archivos estaticos express.static()
+- EJS
+
+## Prox clase jueves 02/07
+- login
+    - endpoint
+    - vista
+    - proteccion de rutas
+
+- bcrypt
+
+## Prox clase lunes 06/07
+- Defensa TP Integrador
+
+## Recu lunes 13/07
+- Recuperatorio de la defensa para lograr aprobacion directa
+
+---
+
 
 ### Tareas
 1. Armen su propia BBDD

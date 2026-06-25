@@ -1685,3 +1685,35 @@ async function actualizarProducto(event) {
 }
 
 ```
+
+---
+
+# 5. Resumen MVC (Modelo Vista Controlador)
+- Mas info en `5_tpIntegradorBack/bitacora/`!
+
+## Entendiendo refactorizacion y modularizacion
+La **refactorización** es el proceso de mejorar la estructura interna del código sin alterar su comportamiento externo, mientras que la **modularización** implica dividir el código en unidades independientes y cohesivas para mejorar la organización. En el contexto de **Express**, esto significa extraer rutas, modelos y configuraciones de un archivo único (como `index.js`) a archivos separados, previniendo el crecimiento desordenado y facilitando el mantenimiento.
+
+## Patron MVC
+El **patrón MVC** (Modelo-Vista-Controlador) es una arquitectura de software que organiza una aplicación separando sus responsabilidades en tres componentes interconectados pero independientes. Su objetivo principal es desacoplar la lógica de negocio de la interfaz de usuario y la gestión de eventos, facilitando el mantenimiento y la escalabilidad del código.
+
+Los tres componentes fundamentales son:
+
+*   **Modelo (Model)**: Gestiona los datos y la lógica de negocio de la aplicación. Es responsable de recuperar, validar y persistir la información (por ejemplo, interactuando con una base de datos), sin conocer cómo se mostrarán esos datos.
+*   **Vista (View)**: Se encarga de la presentación y la interfaz de usuario. Muestra la información proporcionada por el modelo en un formato legible (como HTML o JSON) y captura las interacciones del usuario, pero no procesa la lógica de los datos.
+*   **Controlador (Controller)**: Actúa como intermediario. Recibe las entradas del usuario (peticiones HTTP), interactúa con el modelo para obtener o modificar datos y selecciona la vista adecuada para renderizar la respuesta.
+
+## Pasos en la refactorizacion de nuestra app
+1. Desacoplar los middlewares, los movimos del `index.js` a `middlewares/middlewares.js`
+
+2. Creamos `/routes/product.routes.js` y hicimos que el index redirigiera las peticiones a las rutas. **El index redirige a las rutas de producto**
+```js
+app.use("/api/products", productRoutes);
+```
+
+
+3. Sacamos el callback de peticiones y respuestas y la enviamos a `/controllers/product.controllers.js`. **Las rutas de producto llaman a los middlewares y al controlador**
+
+4. Sacamos la conexion a la BBDD de los controladores y la enviamos a `/models/product.models.js`. **El controlador de producto llama a el modelo de producto**
+
+![Resumen Modelo Vista Controlador](../resumenMVC.png)

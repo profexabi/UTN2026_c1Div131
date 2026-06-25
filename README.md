@@ -9,19 +9,24 @@
 
 ## Prox clase jueves 25/06
 - 1a mitad / Modularizacion patron MVC
-- 2a mitad / ticket con jsPDF + POST ventas
+- Setup para servir archivos estaticos express.static()
+- Setup EJS
 
 ## Prox clase lunes 29/06
-- Setup para servir archivos estaticos express.static()
-- EJS
+- Configurar las vistas EJS modularizadas (cortar y pegar lo que tenemos en las vistas index.html -> index.ejs)
+- 2a mitad / ticket con jsPDF
 
-## Prox clase jueves 02/07
+## Prox clase jueves 02/07 -> **Tengan la app al dia hasta aca para poder hacer entre todos en clase el login**
 - login
-    - endpoint
-    - vista
+    - vista (EJS)
+    - endpoint 
     - proteccion de rutas
 
-- bcrypt
+- [bcrypt](https://www.npmjs.com/package/bcrypt)
+
+
+---
+
 
 ## Prox clase lunes 06/07
 - Defensa TP Integrador

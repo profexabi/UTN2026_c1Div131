@@ -4,7 +4,7 @@ import express from "express";
 import environments from "./src/api/config/environments.js";
 import cors from "cors";
 import { loggerURL } from "./src/api/middlewares/middlewares.js";
-import { productRoutes } from "./src/api/routes/index.js";
+import { productRoutes, viewRoutes } from "./src/api/routes/index.js";
 import { __dirname, join } from "./src/api/utils/index.js";
 
 
@@ -33,15 +33,22 @@ app.use(express.static(join(__dirname, "src/public"))); // Estoy diciendole a la
 ////////////////////
 // Endpoints
 
-app.use("/api/products", productRoutes);
+app.use("/api/products", productRoutes); // Todas las peticiones a esta URL se las pasamos a product.routes.js
+
+// Gracias a las rutas evitamos escribir lo de abajo e invocar middlewares y controladores
+// app.get("/api/products", getAllP...)
+// app.get("/api/products/:id", validateId, getAllP...)
+// app.post("/api/products", getAllP...)
+// app.put("/api/products", getAllP...)
+// app.put("/api/products/:id", validateId, getAllP...)
+
 
 app.get("/", (req, res) => {
     res.send("Hola mundo desde Express.js");
 });
 
-app.get("/dashboard", (req, res) => {
-    res.render("index")
-})
+// Rutas de vistas
+app.use("/dashboard", viewRoutes);
 
 
 

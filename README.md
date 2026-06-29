@@ -14,16 +14,23 @@
 
 ## Prox clase lunes 29/06
 - Configurar las vistas EJS modularizadas (cortar y pegar lo que tenemos en las vistas index.html -> index.ejs)
-- 2a mitad / ticket con jsPDF
 
-## Prox clase jueves 02/07 -> **Tengan la app al dia hasta aca para poder hacer entre todos en clase el login**
 - login
     - vista (EJS)
     - endpoint 
     - proteccion de rutas
 
-- [bcrypt](https://www.npmjs.com/package/bcrypt)
+## Prox clase jueves 02/07
+- Repaso de login
+- Funcionalidad logout
+    - Para destruir la sesion existente para redigir a login
+    - Botoncito en el nav de cerrar sesion
 
+- 2a mitad / ticket con jsPDF
+
+- Instalacion de `bcrypt`
+    - [bcrypt](https://www.npmjs.com/package/bcrypt)
+    - Endpoint para crear usuarios
 
 ---
 
@@ -31,7 +38,7 @@
 ## Prox clase lunes 06/07
 - Defensa TP Integrador
 
-## Recu lunes 13/07
+## Recu lunes 13/07 -> NO HAY CLASES, solo se conecta quien recupere
 - Recuperatorio de la defensa para lograr aprobacion directa
 
 ---

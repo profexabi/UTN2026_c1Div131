@@ -12,7 +12,7 @@ const loggerURL = (req, res, next) => {
 
 // Middleware de ruta: se usara en algunas rutas y en otras no
 const validateId = (req, res, next) => {
-    const id = Number(req.params.id);
+    const id = Number(req.params.id); // Si el id lo enviaramos con post, extraeriamos este valor con req.body
 
     // Si no es un entero o es inferior a 0
     if (!Number.isInteger(id) || id <= 0) {
@@ -65,9 +65,19 @@ const validateProduct = (req, res, next) => {
 }
 
 
+// Middleware simple de proteccion de rutas
+const requireLogin = (req, res, next) => {
+    if (!req.session.user) {
+        return res.redirect("/login")
+    }
+
+    next();
+}
+
 
 export {
     loggerURL,
     validateId,
-    validateProduct
+    validateProduct,
+    requireLogin
 }

@@ -11,7 +11,6 @@ const router = Router();
 router.get("/", getAllProducts);
 
 
-
 // GET product by id
 router.get("/:id", validateId, getProductById);
 

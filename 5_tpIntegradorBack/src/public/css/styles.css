@@ -20,6 +20,11 @@ header, .enlaces {
     display: flex;
     /* border: 1px solid; */
     justify-content: space-between;
+    align-items: center;
+}
+
+.form-logout {
+    margin-left: 15px;
 }
 
 .logo {

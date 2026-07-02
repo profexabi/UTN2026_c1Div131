@@ -12,6 +12,19 @@ export const getAllProducts = async (req, res) => {
     // Optimizacion 1: Manejar errores con try catch
     try {
 
+        /* Aca el controlador le delega al modelo product.models.js TODA la comunicacion con la BBDD (que lo importa como ProductModels)
+
+            ////////////////////
+            // Seleccionar todos los productos
+            const selectAllProducts = () => {
+                // Optimizacion 3: Extraemos la sentencia en una variable y la optimizamos
+                // Sacamos SELECT * para evitar traer columnas innecesarias (+ eficiencia en memoria y en red)
+                const sql = "SELECT id, name, price, image FROM products";
+
+                // Con el destructuring separamos los resultados (rows) y la metadata (field)
+                return connection.query(sql);
+            }
+        */
         const [rows, fields] = await ProductModels.selectAllProducts();
 
         // Optimizacion 4: Devolvemos error 404 si no hay productos
@@ -28,7 +41,7 @@ export const getAllProducts = async (req, res) => {
         });
 
     } catch (error) {
-        console.log(error);
+        console.log(error); // La consola del servidor nos mostrara cual fue el error cuando nos comunicamos con la BBDD
 
         // Optimizacion 2: Devolvemos errores 500
         res.status(500).json({
@@ -83,6 +96,26 @@ export const createProduct = async (req, res) => {
         // console.log(req.body);
     
         // Extraemos los valores que vienen en el CUERPO (body) de la peticion http (HTTP Request)
+
+        console.log(req.body);
+        /*
+            {
+            name: 'Desinfectante Cif concentrado',
+            image: 'https://higiton.com.br/cif-desinfetante-concentrado-floral-5l-unilever/',
+            category: 'drink',
+            price: 5000
+            }
+
+        // Gracias al destructuring en una linea resolvemos lo que aca hacemos en 4
+        let nombre = req.body.name;
+        let imagen = req.body.imagen;
+        let categoria = req.body.categoria;
+        let precio = req.body.precio;
+
+        const { name, image, category, price } = req.body;
+        */
+        console.table(req.body);
+
         const { name, image, category, price } = req.body;
 
         // Optimizacion 3: Sanitizamos los strings antes de insertarlos, para normalizar los datos

@@ -1,3 +1,58 @@
+## Como enviabamos informacion desde un formulario en nuestro tp?
+
+## 1. Envio de informacion con la web api `fetch`
+1. Recogiamos la info del formulario en un objeto nativo del DOM que es `FormData`
+2. Transformabamos este objeto FormData en un objeto literal JavaScript para poder aplicarle el `JSON.stringify()` a este objeto **para enviar la informacion en JSON**
+3. En el endpoint recibiamos la informacion de JSON parseada (ya como objetos) gracias al middleware `express.json()`
+
+
+---
+
+
+## 2. Envio de informacion con html `<form>`
+1. Enviamos directamente toda la informacion no en `JSON` sino en un tipo de data que es `application/x-www-form-urlencoded`
+2. En el endpoint recibimos la informacion parseada (ya como objetos) gracias al middleware `app.use(express.urlencoded({ extended: true }));`
+
+
+---
+
+
+## En conclusion, estos middlewares se encargan de procesar la informacion para que el endpoint reciba todo como objetos JavaScript
+```js
+// Middleware para parsear el JSON de las peticiones POST y PUT con la api fetch
+app.use(express.json()); 
+
+// Middleware para parsear info enviada con <forms>
+app.use(express.urlencoded({ extended: true }));
+```
+
+Los middlewares interceptan la peticion, detectan que tipo de dato es y parsean la info antes de derivarsela al controlador. Gracias a esto, nuestro controlador puede directamente recibir objetos en el `req.body`
+
+Ejemplo con el controlador `createProduct` de `product.controllers.js`
+```js
+// Gracias al middleware router.use(express.json()) -> Recibimos un objeto JS ya parseado
+// console.log(req.body);
+
+// Extraemos los valores que vienen en el CUERPO (body) de la peticion http (HTTP Request)
+const { name, image, category, price } = req.body;
+
+// Si lo que recibieramos fuera JSON no podriamos trabajar con estos datos, guardarlos en variables ni parsarselos a la Base de Datos
+```
+
+Sin estos middlewares, en cada endpoint tendriamos que chequear que tipo de info contiene el req.body
+- `JSON`
+- `application/x-www-form-urlencoded`
+
+Tendriamos filtrar que parsear manualmente en cada endpoint los datos para ya luego poder trabajarlos y hacer destructuring como hacemos aca
+```js
+// Gracias al destructuring podemos guardar como variables sueltas la informacion de arrays y objetos
+const { name, image, category, price } = req.body; // Aca guardamos en las variables name, image, category y price todo lo que trae el req.body
+```
+
+
+---
+
+
 ## 1 / Que es FormData en JavaScript?
 
 **FormData** es una interfaz nativa de JavaScript que permite construir y gestionar conjuntos de pares clave-valor para representar datos de formularios HTML. Su función principal es facilitar el envío de información, **incluyendo archivos y binarios**, mediante solicitudes AJAX o fetch sin recargar la página.

@@ -1,4 +1,38 @@
-## # Bitacora
+## Bitacora
+
+## Que son los ataques con tablas rainbow?
+Un **ataque con tabla rainbow** (o tabla arcoíris) es una técnica criptográfica que utiliza **tablas precalculadas** de pares de contraseñas en texto plano y sus valores hash correspondientes para descifrar contraseñas hasheadas de forma rápida y eficiente.
+
+A diferencia de los ataques de fuerza bruta que calculan hashes en tiempo real, este método **intercambia tiempo de cálculo previo por espacio de almacenamiento**, permitiendo a los atacantes recuperar contraseñas originales al comparar hashes robados con las entradas de la tabla preexistente.
+
+*   **Mecanismo**: Se basa en la propiedad determinista de las funciones hash, donde la misma entrada siempre produce el mismo resultado, permitiendo la creación de cadenas de hash y reducción que optimizan el espacio de almacenamiento.
+*   **Efectividad**: Es altamente efectivo contra sistemas que utilizan **hashes sin sal** o algoritmos débiles, pero es completamente ineficaz contra contraseñas saladas, ya que la sal única para cada usuario hace que los hashes precalculados sean inútiles.
+*   **Defensa**: Las contramedidas principales incluyen el uso de **salting** (añadir datos aleatorios a la contraseña antes de hashear), algoritmos de hash lentos como **bcrypt** o **Argon2**, y la eliminación de contraseñas en favor de la autenticación sin contraseña o biométrica.
+
+
+---
+
+
+## Que es hashear una contraseña?
+El **hash de contraseña** es el proceso de convertir una contraseña en texto plano mediante un **algoritmo criptográfico unidireccional** para generar una cadena de caracteres de longitud fija y única, conocida como hash. Este mecanismo es fundamental en la ciberseguridad porque **no es reversible**, lo que significa que, a diferencia del cifrado, no existe una clave para descifrar el hash y recuperar la contraseña original.
+
+Cuando un usuario se registra, el sistema almacena únicamente este valor hash en la base de datos. Durante el inicio de sesión, el sistema vuelve a aplicar el algoritmo hash a la contraseña ingresada y compara el resultado con el almacenado; si coinciden, se concede el acceso. Esta práctica asegura que, incluso si una base de datos es comprometida, los atacantes no obtienen las contraseñas reales, sino solo cadenas ilegibles que requieren costosos procesos de fuerza bruta o ataques de diccionario para intentar descifrar.
+
+
+---
+
+
+## Objetos literales y objetos `FormData`
+Un objeto normal de JavaScript se denomina **objeto literal** (o simplemente **objeto**).
+
+Se diferencia de un `FormData` en que:
+
+*   Un **objeto** es una colección genérica de pares clave-valor (`{ clave: valor }`), utilizada para almacenar cualquier tipo de dato en el lado del cliente.
+*   Un **FormData** es un objeto específico del DOM diseñado exclusivamente para construir y manejar datos de formularios HTML, facilitando el envío de información (incluyendo archivos) mediante `XMLHttpRequest` o `fetch`.
+
+
+---
+
 
 ## Que formato de informacion manda un `<form>` HTML?
 Los formularios HTML envían la información utilizando dos formatos de codificación principales, definidos por el atributo `enctype` de la etiqueta `<form>`:

@@ -26,13 +26,20 @@
     - Para destruir la sesion existente para redigir a login
     - Botoncito en el nav de cerrar sesion
 
-- 2a mitad / ticket con jsPDF
-
 - Instalacion de `bcrypt`
     - [bcrypt](https://www.npmjs.com/package/bcrypt)
     - Endpoint para crear usuarios
 
+- 2a mitad / ticket con jsPDF
+
 ---
+
+### RECORDATORIOS
+**Para la defensa SOLO entra hasta login y Bcrypt**
+
+**Para el RECUPERATORIO entran si Multer, Descarga de Excels y Paginacion**
+
+**Para el FINAL entra todo eso y los requisitos de entrega para final del TP**
 
 
 ## Prox clase lunes 06/07
